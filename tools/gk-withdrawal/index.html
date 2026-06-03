@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GK 動態提領模擬器 · 持衡理財</title>
+<meta name="description" content="用 Guyton-Klinger 法則逐年模擬退休動態提領，含凍漲、資本保全(CPR)與繁榮規則(PR)，內建 5 種市場情境，全程瀏覽器運算。">
+<link rel="canonical" href="https://chiheng.example/tools/gk-withdrawal/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:site_name" content="持衡理財">
+<meta property="og:title" content="GK 動態提領模擬器 · 持衡理財">
+<meta property="og:description" content="Guyton-Klinger 動態提領逐年模擬，含凍漲、CPR、PR 規則與 5 種市場情境。">
+<meta property="og:url" content="https://chiheng.example/tools/gk-withdrawal/">
+<meta property="og:image" content="https://chiheng.example/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GK 動態提領模擬器 · 持衡理財">
+<meta name="twitter:description" content="Guyton-Klinger 動態提領逐年模擬，含凍漲、CPR、PR 規則。">
+<meta name="twitter:image" content="https://chiheng.example/assets/og.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "GK 動態提領模擬器",
+  "url": "https://chiheng.example/tools/gk-withdrawal/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "inLanguage": "zh-Hant",
+  "description": "用 Guyton-Klinger 法則逐年模擬退休動態提領，含凍漲、資本保全與繁榮規則。",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TWD" }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<header>
+  <nav>
+    <a class="brand" href="/"><span class="mk">持</span>持衡理財</a>
+    <a class="navlink" href="/">首頁</a>
+    <a class="navlink active" href="/tools/gk-withdrawal/">GK 動態提領</a>
+    <a class="navlink" href="/tools/rebalance/">資產再平衡</a>
+    <a class="navlink" href="/app/">App</a>
+    <a class="navlink" href="/about/">關於</a>
+  </nav>
+</header>
+
+<main>
+  <section>
+    <div class="tool-head">
+      <div class="eyebrow">Guyton-Klinger Rules</div>
+      <h1 style="font-size:clamp(28px,5vw,42px)">GK <em>動態提領</em> 模擬器</h1>
+    </div>
+
+    <div class="panel" style="margin-bottom:16px">
+      <h4><span class="no">1</span>本金與基準</h4>
+      <div class="row2">
+        <div class="field"><label>初始本金（元）</label><input id="g_p" class="num" value="10000000"></div>
+        <div class="field"><label>模擬年數</label><input id="g_yr" class="num" value="30"></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label>初始提領率 %</label><input id="g_wr" class="num" value="4"></div>
+        <div class="field"><label>年通膨率 %</label><input id="g_inf" class="num" value="2.5"></div>
+      </div>
+      <details>
+        <summary>進階規則參數</summary>
+        <div class="row2">
+          <div class="field"><label>CPR 觸發倍率 ×</label><input id="g_cprT" class="num" value="1.2"></div>
+          <div class="field"><label>CPR 削減 %</label><input id="g_cprC" class="num" value="10"></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label>PR 觸發倍率 ×</label><input id="g_prT" class="num" value="0.8"></div>
+          <div class="field"><label>PR 增加 %</label><input id="g_prR" class="num" value="10"></div>
+        </div>
+      </details>
+    </div>
+
+    <div class="panel" style="margin-bottom:16px">
+      <h4><span class="no">2</span>各年市場報酬率</h4>
+      <div class="chips" id="g_scen">
+        <span class="chip" data-s="bull">先牛後熊</span>
+        <span class="chip" data-s="lost">失落十年</span>
+        <span class="chip" data-s="crash">退休首年崩盤</span>
+        <span class="chip" data-s="steady">穩健成長</span>
+        <span class="chip" data-s="zero">全部歸零</span>
+      </div>
+      <div class="cagr-row">
+        <div class="cagr-field"><label>自訂年化報酬 %</label><input id="g_cagr" class="num" value="7"></div>
+        <button class="btn ghost btn-sm" id="g_gen">隨機產生各年報酬 →</button>
+      </div>
+      <div class="realized" id="g_realized"></div>
+      <div style="font-size:11.5px;color:var(--ink-soft);margin:14px 0 6px">每一年都可手動微調（負值會標紅）：</div>
+      <div class="returns-grid" id="g_returns"></div>
+    </div>
+
+    <button class="btn" id="g_run" style="margin-bottom:24px">執行模擬 →</button>
+
+    <div class="summary s4">
+      <div class="stat"><div class="k">期末本金</div><div class="v" id="g_end">—</div></div>
+      <div class="stat"><div class="k">累計提領</div><div class="v" id="g_tot">—</div><div class="sub" id="g_avgw">—</div></div>
+      <div class="stat"><div class="k">平均提領率</div><div class="v" id="g_avgwr">—</div></div>
+      <div class="stat"><div class="k">規則觸發年數</div><div class="v" id="g_tri">—</div></div>
+    </div>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>年</th><th>期初本金</th><th>通膨擬議</th><th>最終提領</th><th>提領率</th><th>市場</th><th>期末本金</th><th>觸發</th></tr></thead>
+        <tbody id="g_body"><tr><td colspan="8"><div class="placeholder">選情境或自訂報酬後，按「執行模擬」看逐年結果。</div></td></tr></tbody>
+      </table>
+    </div>
+    <div class="disclaimer">本工具為教學與情境探索用途，並非投資建議。GK 法則由 Jonathan Guyton 與 William Klinger 提出。</div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="prose" style="max-width:none">
+      <h2>GK 動態提領法則怎麼運作？</h2>
+      <p>Guyton-Klinger（GK）是一套「動態提領」策略：不像固定 4% 法則每年機械式調整通膨，而是依市場表現動態增減提領金額，目標是讓退休金在熊市時撐得更久、牛市時適度多領。每年的提領金額會依下列順序計算：</p>
+      <ul>
+        <li><b>通膨調整擬議</b>：上一年提領金額 ×（1＋通膨率）；第 1 年為本金 × 初始提領率。</li>
+        <li><b>凍漲規則</b>：若前一年市場為負、且擬議提領率高於初始率，則跳過通膨調整，沿用去年金額。</li>
+        <li><b>資本保全 CPR</b>：當提領率超過「初始率 × 觸發倍率」，砍掉一定比例，保護本金。</li>
+        <li><b>繁榮規則 PR</b>：當提領率低於「初始率 × 觸發倍率」，適度提高提領，讓你享受成長。</li>
+      </ul>
+      <h2>常見問題</h2>
+      <p><b>Q：這能保證我的錢不會花完嗎？</b><br>不能。本工具僅以你輸入的情境試算，市場實際報酬無法預測。請把它當成「不同情境下會發生什麼」的探索工具。</p>
+      <p><b>Q：輸入的數字會被上傳嗎？</b><br>不會。所有計算都在你的瀏覽器內完成，我們不蒐集、不儲存任何輸入。</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="fl">
+    <a href="/tools/gk-withdrawal/">GK 動態提領</a>
+    <a href="/tools/rebalance/">資產再平衡</a>
+    <a href="/app/">App</a>
+    <a href="/privacy/">隱私權</a>
+    <a href="/about/">關於</a>
+  </div>
+  <div>© 2026 持衡理財 · 本站工具僅供教育與試算用途，不構成投資建議。</div>
+</footer>
+
+<script src="/assets/common.js"></script>
+<script src="/assets/gk.js"></script>
+</body>
+</html>
