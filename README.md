@@ -25,17 +25,13 @@ python3 -m http.server 8765
 # 開 http://localhost:8765/
 ```
 
-## ⚠️ 上線前：換掉佔位網域
+## 正式網域
 
-全站用了佔位網域 `chiheng.example`（出現在 8 個檔案的 canonical / OG / sitemap / robots）。
-買好真實網域後，在 site 資料夾執行（把 your-real-domain.com 換成你的網域）：
+正式網域為 **chihengfinance.com**（已套用到全站 canonical / OG / sitemap / robots）。
+線上位置：GitHub `Wei789/chiheng` → Cloudflare 部署，push 到 main 會自動重新部署。
 
-```
-cd site
-grep -rl "chiheng.example" . | xargs sed -i '' 's/chiheng\.example/your-real-domain.com/g'
-```
-
-執行後再 `grep -r "chiheng.example" .` 確認回傳 0 筆。
+> 若日後要換網域，在 site 資料夾執行（把 NEW-DOMAIN 換成新網域）：
+> `grep -rl "chihengfinance.com" . --exclude=README.md | xargs sed -i '' 's/chihengfinance\.com/NEW-DOMAIN/g'`
 
 ## 還沒補的素材
 
