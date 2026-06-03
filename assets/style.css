@@ -146,3 +146,9 @@ footer .fl a:hover{color:var(--pine)}
 .realized b{color:var(--pine);font-family:var(--mono)}
 .stat .sub{font-family:var(--sans);font-size:11px;color:var(--ink-soft);margin-top:4px}
 @media(max-width:760px){ .summary.s4{grid-template-columns:1fr 1fr} }
+/* localStorage 暫存清單 */
+.saved-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}
+.saved-row:last-child{border-bottom:none}
+.saved-name{flex:1;font-size:14px;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.btn-del{background:none;border:1px solid var(--line);color:var(--ink-soft);border-radius:7px;padding:7px 12px;font-family:var(--sans);font-size:13px;cursor:pointer;transition:.18s}
+.btn-del:hover{border-color:var(--sell);color:var(--sell)}

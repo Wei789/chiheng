@@ -50,3 +50,22 @@ document.getElementById('r_run').addEventListener('click', () => {
     <div class="bar-bg"><div class="bar-cur" style="width:${(i.val/total*100).toFixed(1)}%"></div><div class="bar-tgt" style="left:${i.tgt}%"></div></div></div>`).join('')
     + `<div style="font-size:11px;color:var(--ink-soft);margin-top:4px"><span style="color:var(--gold)">▰</span> ${T('allocCurrent')}　<span style="color:var(--pine)">▏</span> ${T('allocTarget')}</div>`;
 });
+
+/* 暫存：收集 / 套回目前組合 */
+function gatherRebal(){
+  return {
+    mode,
+    cash: document.getElementById('r_cash').value,
+    rows: [...rowsEl.querySelectorAll('.holding-row')].map(r => ({
+      name: r.querySelector('.nm').value, val: r.querySelector('.v').value, tgt: r.querySelector('.t').value
+    }))
+  };
+}
+function applyRebal(o){
+  if (!o) return;
+  (o.mode === 'full' ? document.getElementById('m_full') : document.getElementById('m_new')).onclick();
+  document.getElementById('r_cash').value = o.cash || '';
+  rowsEl.innerHTML = '';
+  (o.rows || []).forEach(r => addRow(r.name, r.val, r.tgt));
+}
+buildStorageUI('rebal', gatherRebal, applyRebal);

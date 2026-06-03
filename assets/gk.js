@@ -137,5 +137,22 @@ document.getElementById('g_run').addEventListener('click', () => {
   document.getElementById('g_tri').textContent = triggers+' '+T('yearsUnit');
 });
 
+/* 暫存：收集 / 套回目前情境 */
+const GK_IDS = ['g_p','g_yr','g_wr','g_inf','g_cprT','g_cprC','g_prT','g_prR'];
+function gatherGK(){
+  const o = {};
+  GK_IDS.forEach(id => o[id] = document.getElementById(id).value);
+  o.returns = [...document.querySelectorAll('#g_returns input')].map(i => i.value);
+  return o;
+}
+function applyGK(o){
+  if (!o) return;
+  GK_IDS.forEach(id => { if (o[id] !== undefined) document.getElementById(id).value = o[id]; });
+  if (o.returns) fillReturns(o.returns.map(Number));
+  document.querySelectorAll('#g_scen .chip').forEach(x => x.style.cssText = '');
+  document.getElementById('g_realized').textContent = '';
+}
+
 /* 初始化：預設選取並填入「先牛後熊」 */
 document.querySelector('#g_scen .chip').click();
+buildStorageUI('gk', gatherGK, applyGK);
