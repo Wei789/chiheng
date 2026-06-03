@@ -6,4 +6,25 @@
   <url><loc>https://chihengfinance.com/app/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://chihengfinance.com/about/</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
   <url><loc>https://chihengfinance.com/privacy/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+
+  <url><loc>https://chihengfinance.com/en/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chihengfinance.com/en/tools/gk-withdrawal/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chihengfinance.com/en/tools/rebalance/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chihengfinance.com/en/app/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://chihengfinance.com/en/about/</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://chihengfinance.com/en/privacy/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+
+  <url><loc>https://chihengfinance.com/zh-cn/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chihengfinance.com/zh-cn/tools/gk-withdrawal/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chihengfinance.com/zh-cn/tools/rebalance/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chihengfinance.com/zh-cn/app/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://chihengfinance.com/zh-cn/about/</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://chihengfinance.com/zh-cn/privacy/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+
+  <url><loc>https://chihengfinance.com/ja/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chihengfinance.com/ja/tools/gk-withdrawal/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chihengfinance.com/ja/tools/rebalance/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chihengfinance.com/ja/app/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://chihengfinance.com/ja/about/</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://chihengfinance.com/ja/privacy/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>

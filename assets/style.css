@@ -25,6 +25,10 @@ nav{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:6px;paddi
 .navlink{font-size:14px;padding:7px 13px;border-radius:999px;cursor:pointer;color:var(--ink-soft);border:1px solid transparent;transition:.2s;white-space:nowrap}
 .navlink:hover{color:var(--pine)}
 .navlink.active{background:var(--pine);color:#f3ede1;border-color:var(--pine)}
+.langsw{display:inline-flex;align-items:center;gap:2px;margin-left:6px;padding-left:10px;border-left:1px solid var(--line)}
+.langsw a{font-size:12.5px;padding:5px 8px;border-radius:6px;color:var(--ink-soft);transition:.18s;white-space:nowrap}
+.langsw a:hover{color:var(--pine)}
+.langsw a.on{color:var(--pine);font-weight:700}
 /* layout */
 main{max-width:1080px;margin:0 auto;padding:0 22px}
 section{padding:46px 0;animation:fade .4s ease}

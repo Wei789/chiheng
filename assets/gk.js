@@ -22,7 +22,7 @@ function renderReturns(preserve) {
     const cell = document.createElement('div');
     cell.className = 'return-cell';
     const v = old[i-1] !== undefined ? old[i-1] : 6;
-    cell.innerHTML = `<label>第 ${i} 年</label><input type="number" step="0.1" value="${v}">`;
+    cell.innerHTML = `<label>${T('yearLabel').replace('{i}', i)}</label><input type="number" step="0.1" value="${v}">`;
     grid.appendChild(cell);
   }
   colorReturns();
@@ -94,7 +94,7 @@ document.getElementById('g_gen').addEventListener('click', () => {
   fillReturns(randomReturnsForCAGR(target, getYears()));
   document.querySelectorAll('#g_scen .chip').forEach(x => x.style.cssText = '');
   document.getElementById('g_realized').innerHTML =
-    `已隨機產生 ${getYears()} 年報酬，實際年化報酬 = <b>${realizedCAGR().toFixed(2)}%</b>（目標 ${target}%）`;
+    T('randomDone').replace('{n}', getYears()).replace('{r}', realizedCAGR().toFixed(2)).replace('{t}', target);
 });
 
 /* 年數改變時重建格子並保留值 */
@@ -116,7 +116,7 @@ document.getElementById('g_run').addEventListener('click', () => {
     if (y === 0) { proposed = p*wr; wInfl = proposed; }
     else {
       wInfl = prevW*(1+inf); proposed = wInfl;
-      if (prevRet !== null && prevRet < 0 && (proposed/start) > wr) { proposed = prevW; tag.push(['凍漲','t-fz']); }
+      if (prevRet !== null && prevRet < 0 && (proposed/start) > wr) { proposed = prevW; tag.push([T('freeze'),'t-fz']); }
       if ((proposed/start) > wr*cprT) { proposed = proposed*(1-cprC); tag.push(['CPR','t-cpr']); }
       else if ((proposed/start) < wr*prT) { proposed = proposed*(1+prR); tag.push(['PR','t-pr']); }
     }
@@ -133,8 +133,8 @@ document.getElementById('g_run').addEventListener('click', () => {
   document.getElementById('g_end').textContent = f0(bal);
   document.getElementById('g_tot').textContent = f0(totalW);
   document.getElementById('g_avgwr').textContent = avgWR.toFixed(2)+'%';
-  document.getElementById('g_avgw').textContent = '平均年提領 '+f0(done?totalW/done:0);
-  document.getElementById('g_tri').textContent = triggers+' 年';
+  document.getElementById('g_avgw').textContent = T('avgWithdrawPrefix')+f0(done?totalW/done:0);
+  document.getElementById('g_tri').textContent = triggers+' '+T('yearsUnit');
 });
 
 /* 初始化：預設選取並填入「先牛後熊」 */

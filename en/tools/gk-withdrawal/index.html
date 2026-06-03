@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GK Dynamic Withdrawal Simulator · Chiheng Finance</title>
+<meta name="description" content="Simulate retirement withdrawals year by year with the Guyton-Klinger rules — freeze, capital preservation (CPR) and prosperity (PR) — with 5 market scenarios. Runs entirely in your browser.">
+<link rel="canonical" href="https://chihengfinance.com/en/tools/gk-withdrawal/">
+<link rel="alternate" hreflang="zh-Hant" href="https://chihengfinance.com/tools/gk-withdrawal/">
+<link rel="alternate" hreflang="en" href="https://chihengfinance.com/en/tools/gk-withdrawal/">
+<link rel="alternate" hreflang="zh-Hans" href="https://chihengfinance.com/zh-cn/tools/gk-withdrawal/">
+<link rel="alternate" hreflang="ja" href="https://chihengfinance.com/ja/tools/gk-withdrawal/">
+<link rel="alternate" hreflang="x-default" href="https://chihengfinance.com/tools/gk-withdrawal/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Chiheng Finance">
+<meta property="og:title" content="GK Dynamic Withdrawal Simulator · Chiheng Finance">
+<meta property="og:description" content="Guyton-Klinger dynamic withdrawal simulation with freeze, CPR and PR rules and 5 market scenarios.">
+<meta property="og:url" content="https://chihengfinance.com/en/tools/gk-withdrawal/">
+<meta property="og:image" content="https://chihengfinance.com/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GK Dynamic Withdrawal Simulator · Chiheng Finance">
+<meta name="twitter:description" content="Guyton-Klinger dynamic withdrawal simulation with freeze, CPR and PR rules.">
+<meta name="twitter:image" content="https://chihengfinance.com/assets/og.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "GK Dynamic Withdrawal Simulator",
+  "url": "https://chihengfinance.com/en/tools/gk-withdrawal/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "inLanguage": "en",
+  "description": "Simulate retirement withdrawals year by year with the Guyton-Klinger rules.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<header>
+  <nav>
+    <a class="brand" href="/en/"><span class="mk">持</span>Chiheng Finance</a>
+    <a class="navlink" href="/en/">Home</a>
+    <a class="navlink active" href="/en/tools/gk-withdrawal/">GK Withdrawal</a>
+    <a class="navlink" href="/en/tools/rebalance/">Rebalance</a>
+    <a class="navlink" href="/en/app/">App</a>
+    <a class="navlink" href="/en/about/">About</a>
+    <span class="langsw"><a href="/tools/gk-withdrawal/">繁</a><a href="/en/tools/gk-withdrawal/" class="on">EN</a><a href="/zh-cn/tools/gk-withdrawal/">简</a><a href="/ja/tools/gk-withdrawal/">日</a></span>
+  </nav>
+</header>
+
+<main>
+  <section>
+    <div class="tool-head">
+      <div class="eyebrow">Guyton-Klinger Rules</div>
+      <h1 style="font-size:clamp(28px,5vw,42px)">GK <em>Dynamic Withdrawal</em> Simulator</h1>
+    </div>
+
+    <div class="panel" style="margin-bottom:16px">
+      <h4><span class="no">1</span>Principal & Baseline</h4>
+      <div class="row2">
+        <div class="field"><label>Initial principal</label><input id="g_p" class="num" value="10000000"></div>
+        <div class="field"><label>Simulation years</label><input id="g_yr" class="num" value="30"></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label>Initial withdrawal rate %</label><input id="g_wr" class="num" value="4"></div>
+        <div class="field"><label>Annual inflation %</label><input id="g_inf" class="num" value="2.5"></div>
+      </div>
+      <details>
+        <summary>Advanced rule parameters</summary>
+        <div class="row2">
+          <div class="field"><label>CPR trigger ratio ×</label><input id="g_cprT" class="num" value="1.2"></div>
+          <div class="field"><label>CPR cut %</label><input id="g_cprC" class="num" value="10"></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label>PR trigger ratio ×</label><input id="g_prT" class="num" value="0.8"></div>
+          <div class="field"><label>PR boost %</label><input id="g_prR" class="num" value="10"></div>
+        </div>
+      </details>
+    </div>
+
+    <div class="panel" style="margin-bottom:16px">
+      <h4><span class="no">2</span>Annual Market Returns</h4>
+      <div class="chips" id="g_scen">
+        <span class="chip" data-s="bull">Bull → Bear</span>
+        <span class="chip" data-s="lost">Lost Decade</span>
+        <span class="chip" data-s="crash">Crash at Retirement</span>
+        <span class="chip" data-s="steady">Steady Growth</span>
+        <span class="chip" data-s="zero">All Zero</span>
+      </div>
+      <div class="cagr-row">
+        <div class="cagr-field"><label>Custom annual return %</label><input id="g_cagr" class="num" value="7"></div>
+        <button class="btn ghost btn-sm" id="g_gen">Generate random yearly returns →</button>
+      </div>
+      <div class="realized" id="g_realized"></div>
+      <div style="font-size:11.5px;color:var(--ink-soft);margin:14px 0 6px">Each year is editable (negatives shown in red):</div>
+      <div class="returns-grid" id="g_returns"></div>
+    </div>
+
+    <button class="btn" id="g_run" style="margin-bottom:24px">Run simulation →</button>
+
+    <div class="summary s4">
+      <div class="stat"><div class="k">Ending balance</div><div class="v" id="g_end">—</div></div>
+      <div class="stat"><div class="k">Total withdrawn</div><div class="v" id="g_tot">—</div><div class="sub" id="g_avgw">—</div></div>
+      <div class="stat"><div class="k">Avg withdrawal rate</div><div class="v" id="g_avgwr">—</div></div>
+      <div class="stat"><div class="k">Rule-triggered years</div><div class="v" id="g_tri">—</div></div>
+    </div>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>Yr</th><th>Start balance</th><th>CPI draft</th><th>Final withdrawal</th><th>WR</th><th>Market</th><th>End balance</th><th>Rules</th></tr></thead>
+        <tbody id="g_body"><tr><td colspan="8"><div class="placeholder">Pick a scenario or custom return, then "Run simulation" to see year-by-year results.</div></td></tr></tbody>
+      </table>
+    </div>
+    <div class="disclaimer">This tool is for education and scenario exploration, not investment advice. The GK rules were proposed by Jonathan Guyton and William Klinger.</div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="prose" style="max-width:none">
+      <h2>How do the GK dynamic withdrawal rules work?</h2>
+      <p>Guyton-Klinger (GK) is a "dynamic withdrawal" strategy: instead of the rigid 4% rule that adjusts mechanically for inflation each year, it raises or trims the withdrawal based on market performance — aiming to make savings last longer in bear markets while taking a little more in bull markets. Each year's withdrawal is computed in this order:</p>
+      <ul>
+        <li><b>Inflation-adjusted draft</b>: last year's withdrawal × (1 + inflation); year 1 = principal × initial withdrawal rate.</li>
+        <li><b>Freeze rule</b>: if last year's market was negative AND the proposed rate exceeds the initial rate, skip the inflation adjustment and keep last year's amount.</li>
+        <li><b>Capital Preservation (CPR)</b>: when the withdrawal rate exceeds "initial × trigger ratio", cut by a set percentage to protect principal.</li>
+        <li><b>Prosperity Rule (PR)</b>: when the rate falls below "initial × trigger ratio", raise the withdrawal modestly so you enjoy the growth.</li>
+      </ul>
+      <h2>FAQ</h2>
+      <p><b>Q: Does this guarantee my money won't run out?</b><br>No. It only models the scenarios you enter; real market returns can't be predicted. Treat it as a "what happens under different scenarios" explorer.</p>
+      <p><b>Q: Is my input uploaded anywhere?</b><br>No. All calculations run in your browser; we don't collect or store anything you enter.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="fl">
+    <a href="/en/tools/gk-withdrawal/">GK Withdrawal</a>
+    <a href="/en/tools/rebalance/">Rebalance</a>
+    <a href="/en/app/">App</a>
+    <a href="/en/privacy/">Privacy</a>
+    <a href="/en/about/">About</a>
+  </div>
+  <div>© 2026 Chiheng Finance · Tools are for education and estimation only, not investment advice.</div>
+</footer>
+
+<script>window.LANG='en'</script>
+<script src="/assets/common.js"></script>
+<script src="/assets/gk.js"></script>
+</body>
+</html>

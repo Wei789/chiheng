@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>資産リバランス計算機 · 持衡理財</title>
+<meta name="description" content="保有銘柄と目標配分を入力すると、「新規資金の投入」または「完全リバランス」の売買提案を即座に算出。乖離表示と配分比較チャート付き。無料・登録不要・ブラウザ内で計算。">
+<link rel="canonical" href="https://chihengfinance.com/ja/tools/rebalance/">
+<link rel="alternate" hreflang="zh-Hant" href="https://chihengfinance.com/tools/rebalance/">
+<link rel="alternate" hreflang="en" href="https://chihengfinance.com/en/tools/rebalance/">
+<link rel="alternate" hreflang="zh-Hans" href="https://chihengfinance.com/zh-cn/tools/rebalance/">
+<link rel="alternate" hreflang="ja" href="https://chihengfinance.com/ja/tools/rebalance/">
+<link rel="alternate" hreflang="x-default" href="https://chihengfinance.com/tools/rebalance/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:site_name" content="持衡理財">
+<meta property="og:title" content="資産リバランス計算機 · 持衡理財">
+<meta property="og:description" content="2つのモードで売買提案：新規資金の投入または完全リバランス。乖離表示と配分比較チャート付き。">
+<meta property="og:url" content="https://chihengfinance.com/ja/tools/rebalance/">
+<meta property="og:image" content="https://chihengfinance.com/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="資産リバランス計算機 · 持衡理財">
+<meta name="twitter:description" content="2つのモードで売買提案：新規資金の投入または完全リバランス。">
+<meta name="twitter:image" content="https://chihengfinance.com/assets/og.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "資産リバランス計算機",
+  "url": "https://chihengfinance.com/ja/tools/rebalance/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "inLanguage": "ja",
+  "description": "保有と目標配分を入力し、新規資金投入または完全リバランスの売買提案を算出。",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<header>
+  <nav>
+    <a class="brand" href="/ja/"><span class="mk">持</span>持衡理財</a>
+    <a class="navlink" href="/ja/">ホーム</a>
+    <a class="navlink" href="/ja/tools/gk-withdrawal/">GK 引き出し</a>
+    <a class="navlink active" href="/ja/tools/rebalance/">リバランス</a>
+    <a class="navlink" href="/ja/app/">App</a>
+    <a class="navlink" href="/ja/about/">概要</a>
+    <span class="langsw"><a href="/tools/rebalance/">繁</a><a href="/en/tools/rebalance/">EN</a><a href="/zh-cn/tools/rebalance/">简</a><a href="/ja/tools/rebalance/" class="on">日</a></span>
+  </nav>
+</header>
+
+<main>
+  <section>
+    <div class="tool-head">
+      <div class="eyebrow">Portfolio Rebalancing</div>
+      <h1 style="font-size:clamp(28px,5vw,42px)">資産 <em>リバランス</em> 計算機</h1>
+    </div>
+    <div class="grid2">
+      <div>
+        <div class="panel">
+          <h4><span class="no">1</span>保有と目標</h4>
+          <div class="seg">
+            <button id="m_new" class="on">新規資金の投入</button>
+            <button id="m_full">完全リバランス</button>
+          </div>
+          <div class="field" id="cashWrap"><label>投入する新規資金</label><input id="r_cash" class="num" value="300000"></div>
+          <div style="font-size:11.5px;color:var(--ink-soft);margin:2px 0 10px">名称 · 現在の評価額 · 目標%</div>
+          <div id="r_rows"></div>
+          <button class="btn ghost btn-sm" id="r_add" style="margin-top:4px">＋ 銘柄を追加</button>
+          <div id="r_warn" style="font-size:12px;color:var(--sell);margin-top:10px;display:none"></div>
+          <button class="btn" id="r_run" style="margin-top:14px">リバランスを計算 →</button>
+        </div>
+      </div>
+      <div>
+        <div class="summary">
+          <div class="stat"><div class="k">現在の総額</div><div class="v" id="r_total">—</div></div>
+          <div class="stat"><div class="k">リバランス後</div><div class="v" id="r_after">—</div></div>
+          <div class="stat"><div class="k">必要な移動額</div><div class="v" id="r_move">—</div></div>
+        </div>
+        <div class="panel" style="margin-bottom:16px">
+          <h4>配分：現在 vs 目標</h4>
+          <div class="alloc" id="r_alloc"><div class="placeholder" style="padding:12px">「リバランスを計算」を押して確認。</div></div>
+        </div>
+        <div class="tblwrap">
+          <table>
+            <thead><tr><th>銘柄</th><th>現在の評価額</th><th>現在%</th><th>目標%</th><th>推奨アクション</th></tr></thead>
+            <tbody id="r_body"><tr><td colspan="5"><div class="placeholder">保有と目標を入力して計算してください。</div></td></tr></tbody>
+          </table>
+        </div>
+        <div class="disclaimer">自動追跡・多通貨・iCloud 同期をお望みですか？それは WealthPoise アプリの中核機能です。<a href="/ja/app/" style="color:var(--pine);text-decoration:underline">アプリを見る →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="prose" style="max-width:none">
+      <h2>リバランスとは？2つのモードの選び方</h2>
+      <p>市場の変動につれて、ポートフォリオは当初の配分から少しずつ乖離していきます。「リバランス」はそれを目標に戻し、リスクを管理して単一資産への過度な集中を避けることです。本ツールは2つの方法を提供します：</p>
+      <ul>
+        <li><b>新規資金の投入</b>：投入できる余剰資金がある場合。ツールは既存の保有を売らずに、配分が不足している銘柄へ優先的に資金を振り分けます——積立投資や税・手数料を抑えたい方に最適。</li>
+        <li><b>完全リバランス</b>：配分が目標に最も近づくよう、正確な売買提案を提示します——年に一度の大きな調整に最適。</li>
+      </ul>
+      <h2>よくある質問</h2>
+      <p><b>Q：目標%は合計100%にする必要がありますか？</b><br>はい。合計が100%でない場合、結果が正確になるよう調整を促します。</p>
+      <p><b>Q：保有データはアップロードされますか？</b><br>いいえ。すべてブラウザ内で計算します。デバイス間の自動追跡をご希望なら WealthPoise アプリをご検討ください。</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="fl">
+    <a href="/ja/tools/gk-withdrawal/">GK 引き出し</a>
+    <a href="/ja/tools/rebalance/">リバランス</a>
+    <a href="/ja/app/">App</a>
+    <a href="/ja/privacy/">プライバシー</a>
+    <a href="/ja/about/">概要</a>
+  </div>
+  <div>© 2026 持衡理財 · 本サイトのツールは教育・試算用途のみで、投資助言ではありません。</div>
+</footer>
+
+<script>window.LANG='ja'</script>
+<script src="/assets/common.js"></script>
+<script src="/assets/rebalance.js"></script>
+</body>
+</html>

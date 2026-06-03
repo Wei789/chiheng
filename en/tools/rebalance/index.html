@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Rebalancing Calculator · Chiheng Finance</title>
+<meta name="description" content="Enter your holdings and target allocation to instantly get buy/sell suggestions for 'invest new cash' or 'full rebalance', with drift display and an allocation chart. Free, no signup, runs in your browser.">
+<link rel="canonical" href="https://chihengfinance.com/en/tools/rebalance/">
+<link rel="alternate" hreflang="zh-Hant" href="https://chihengfinance.com/tools/rebalance/">
+<link rel="alternate" hreflang="en" href="https://chihengfinance.com/en/tools/rebalance/">
+<link rel="alternate" hreflang="zh-Hans" href="https://chihengfinance.com/zh-cn/tools/rebalance/">
+<link rel="alternate" hreflang="ja" href="https://chihengfinance.com/ja/tools/rebalance/">
+<link rel="alternate" hreflang="x-default" href="https://chihengfinance.com/tools/rebalance/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Chiheng Finance">
+<meta property="og:title" content="Portfolio Rebalancing Calculator · Chiheng Finance">
+<meta property="og:description" content="Buy/sell suggestions in two modes: invest new cash or full rebalance, with drift display and allocation chart.">
+<meta property="og:url" content="https://chihengfinance.com/en/tools/rebalance/">
+<meta property="og:image" content="https://chihengfinance.com/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Portfolio Rebalancing Calculator · Chiheng Finance">
+<meta name="twitter:description" content="Buy/sell suggestions: invest new cash or full rebalance.">
+<meta name="twitter:image" content="https://chihengfinance.com/assets/og.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Portfolio Rebalancing Calculator",
+  "url": "https://chihengfinance.com/en/tools/rebalance/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "inLanguage": "en",
+  "description": "Enter holdings and target allocation to get buy/sell suggestions for invest-new-cash or full rebalance.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<header>
+  <nav>
+    <a class="brand" href="/en/"><span class="mk">持</span>Chiheng Finance</a>
+    <a class="navlink" href="/en/">Home</a>
+    <a class="navlink" href="/en/tools/gk-withdrawal/">GK Withdrawal</a>
+    <a class="navlink active" href="/en/tools/rebalance/">Rebalance</a>
+    <a class="navlink" href="/en/app/">App</a>
+    <a class="navlink" href="/en/about/">About</a>
+    <span class="langsw"><a href="/tools/rebalance/">繁</a><a href="/en/tools/rebalance/" class="on">EN</a><a href="/zh-cn/tools/rebalance/">简</a><a href="/ja/tools/rebalance/">日</a></span>
+  </nav>
+</header>
+
+<main>
+  <section>
+    <div class="tool-head">
+      <div class="eyebrow">Portfolio Rebalancing</div>
+      <h1 style="font-size:clamp(28px,5vw,42px)">Portfolio <em>Rebalancing</em> Calculator</h1>
+    </div>
+    <div class="grid2">
+      <div>
+        <div class="panel">
+          <h4><span class="no">1</span>Your holdings & targets</h4>
+          <div class="seg">
+            <button id="m_new" class="on">Invest new cash</button>
+            <button id="m_full">Full rebalance</button>
+          </div>
+          <div class="field" id="cashWrap"><label>New cash to invest</label><input id="r_cash" class="num" value="300000"></div>
+          <div style="font-size:11.5px;color:var(--ink-soft);margin:2px 0 10px">Name · Current value · Target %</div>
+          <div id="r_rows"></div>
+          <button class="btn ghost btn-sm" id="r_add" style="margin-top:4px">＋ Add holding</button>
+          <div id="r_warn" style="font-size:12px;color:var(--sell);margin-top:10px;display:none"></div>
+          <button class="btn" id="r_run" style="margin-top:14px">Calculate rebalance →</button>
+        </div>
+      </div>
+      <div>
+        <div class="summary">
+          <div class="stat"><div class="k">Current total</div><div class="v" id="r_total">—</div></div>
+          <div class="stat"><div class="k">After rebalance</div><div class="v" id="r_after">—</div></div>
+          <div class="stat"><div class="k">Amount moved</div><div class="v" id="r_move">—</div></div>
+        </div>
+        <div class="panel" style="margin-bottom:16px">
+          <h4>Allocation: current vs target</h4>
+          <div class="alloc" id="r_alloc"><div class="placeholder" style="padding:12px">Click "Calculate rebalance" to view.</div></div>
+        </div>
+        <div class="tblwrap">
+          <table>
+            <thead><tr><th>Holding</th><th>Current value</th><th>Current %</th><th>Target %</th><th>Action</th></tr></thead>
+            <tbody id="r_body"><tr><td colspan="5"><div class="placeholder">Enter holdings and targets, then calculate.</div></td></tr></tbody>
+          </table>
+        </div>
+        <div class="disclaimer">Want automatic tracking, multi-currency and iCloud sync? That's the core of the WealthPoise app. <a href="/en/app/" style="color:var(--pine);text-decoration:underline">See the app →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="prose" style="max-width:none">
+      <h2>What is rebalancing? Which mode should I use?</h2>
+      <p>As markets move, your portfolio drifts away from its intended allocation. "Rebalancing" brings it back to target to control risk and avoid over-concentration in one asset. This tool offers two approaches:</p>
+      <ul>
+        <li><b>Invest new cash</b>: you have spare cash to deploy. The tool routes it first to the under-weighted holdings, without selling anything — ideal for dollar-cost averaging and saving tax and fees.</li>
+        <li><b>Full rebalance</b>: gives precise buy and sell suggestions so the allocation lands as close to target as possible — ideal for an annual reset.</li>
+      </ul>
+      <h2>FAQ</h2>
+      <p><b>Q: Must the target percentages add up to 100%?</b><br>Yes. If they don't, the tool prompts you to adjust so the results stay meaningful.</p>
+      <p><b>Q: Is my holdings data uploaded?</b><br>No. Everything runs in your browser. For automatic cross-device tracking, consider the WealthPoise app.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="fl">
+    <a href="/en/tools/gk-withdrawal/">GK Withdrawal</a>
+    <a href="/en/tools/rebalance/">Rebalance</a>
+    <a href="/en/app/">App</a>
+    <a href="/en/privacy/">Privacy</a>
+    <a href="/en/about/">About</a>
+  </div>
+  <div>© 2026 Chiheng Finance · Tools are for education and estimation only, not investment advice.</div>
+</footer>
+
+<script>window.LANG='en'</script>
+<script src="/assets/common.js"></script>
+<script src="/assets/rebalance.js"></script>
+</body>
+</html>

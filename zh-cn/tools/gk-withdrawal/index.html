@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GK 动态提取模拟器 · 持衡理财</title>
+<meta name="description" content="用 Guyton-Klinger 法则逐年模拟退休动态提取，含冻涨、资本保全(CPR)与繁荣规则(PR)，内置 5 种市场情景，全程浏览器运算。">
+<link rel="canonical" href="https://chihengfinance.com/zh-cn/tools/gk-withdrawal/">
+<link rel="alternate" hreflang="zh-Hant" href="https://chihengfinance.com/tools/gk-withdrawal/">
+<link rel="alternate" hreflang="en" href="https://chihengfinance.com/en/tools/gk-withdrawal/">
+<link rel="alternate" hreflang="zh-Hans" href="https://chihengfinance.com/zh-cn/tools/gk-withdrawal/">
+<link rel="alternate" hreflang="ja" href="https://chihengfinance.com/ja/tools/gk-withdrawal/">
+<link rel="alternate" hreflang="x-default" href="https://chihengfinance.com/tools/gk-withdrawal/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="持衡理财">
+<meta property="og:title" content="GK 动态提取模拟器 · 持衡理财">
+<meta property="og:description" content="Guyton-Klinger 动态提取逐年模拟，含冻涨、CPR、PR 规则与 5 种市场情景。">
+<meta property="og:url" content="https://chihengfinance.com/zh-cn/tools/gk-withdrawal/">
+<meta property="og:image" content="https://chihengfinance.com/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GK 动态提取模拟器 · 持衡理财">
+<meta name="twitter:description" content="Guyton-Klinger 动态提取逐年模拟，含冻涨、CPR、PR 规则。">
+<meta name="twitter:image" content="https://chihengfinance.com/assets/og.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "GK 动态提取模拟器",
+  "url": "https://chihengfinance.com/zh-cn/tools/gk-withdrawal/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "inLanguage": "zh-Hans",
+  "description": "用 Guyton-Klinger 法则逐年模拟退休动态提取，含冻涨、资本保全与繁荣规则。",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<header>
+  <nav>
+    <a class="brand" href="/zh-cn/"><span class="mk">持</span>持衡理财</a>
+    <a class="navlink" href="/zh-cn/">首页</a>
+    <a class="navlink active" href="/zh-cn/tools/gk-withdrawal/">GK 动态提取</a>
+    <a class="navlink" href="/zh-cn/tools/rebalance/">资产再平衡</a>
+    <a class="navlink" href="/zh-cn/app/">App</a>
+    <a class="navlink" href="/zh-cn/about/">关于</a>
+    <span class="langsw"><a href="/tools/gk-withdrawal/">繁</a><a href="/en/tools/gk-withdrawal/">EN</a><a href="/zh-cn/tools/gk-withdrawal/" class="on">简</a><a href="/ja/tools/gk-withdrawal/">日</a></span>
+  </nav>
+</header>
+
+<main>
+  <section>
+    <div class="tool-head">
+      <div class="eyebrow">Guyton-Klinger Rules</div>
+      <h1 style="font-size:clamp(28px,5vw,42px)">GK <em>动态提取</em> 模拟器</h1>
+    </div>
+
+    <div class="panel" style="margin-bottom:16px">
+      <h4><span class="no">1</span>本金与基准</h4>
+      <div class="row2">
+        <div class="field"><label>初始本金（元）</label><input id="g_p" class="num" value="10000000"></div>
+        <div class="field"><label>模拟年数</label><input id="g_yr" class="num" value="30"></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label>初始提取率 %</label><input id="g_wr" class="num" value="4"></div>
+        <div class="field"><label>年通胀率 %</label><input id="g_inf" class="num" value="2.5"></div>
+      </div>
+      <details>
+        <summary>高级规则参数</summary>
+        <div class="row2">
+          <div class="field"><label>CPR 触发倍率 ×</label><input id="g_cprT" class="num" value="1.2"></div>
+          <div class="field"><label>CPR 削减 %</label><input id="g_cprC" class="num" value="10"></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label>PR 触发倍率 ×</label><input id="g_prT" class="num" value="0.8"></div>
+          <div class="field"><label>PR 增加 %</label><input id="g_prR" class="num" value="10"></div>
+        </div>
+      </details>
+    </div>
+
+    <div class="panel" style="margin-bottom:16px">
+      <h4><span class="no">2</span>各年市场收益率</h4>
+      <div class="chips" id="g_scen">
+        <span class="chip" data-s="bull">先牛后熊</span>
+        <span class="chip" data-s="lost">失落十年</span>
+        <span class="chip" data-s="crash">退休首年崩盘</span>
+        <span class="chip" data-s="steady">稳健增长</span>
+        <span class="chip" data-s="zero">全部归零</span>
+      </div>
+      <div class="cagr-row">
+        <div class="cagr-field"><label>自定义年化收益 %</label><input id="g_cagr" class="num" value="7"></div>
+        <button class="btn ghost btn-sm" id="g_gen">随机生成各年收益 →</button>
+      </div>
+      <div class="realized" id="g_realized"></div>
+      <div style="font-size:11.5px;color:var(--ink-soft);margin:14px 0 6px">每一年都可手动微调（负值会标红）：</div>
+      <div class="returns-grid" id="g_returns"></div>
+    </div>
+
+    <button class="btn" id="g_run" style="margin-bottom:24px">执行模拟 →</button>
+
+    <div class="summary s4">
+      <div class="stat"><div class="k">期末本金</div><div class="v" id="g_end">—</div></div>
+      <div class="stat"><div class="k">累计提取</div><div class="v" id="g_tot">—</div><div class="sub" id="g_avgw">—</div></div>
+      <div class="stat"><div class="k">平均提取率</div><div class="v" id="g_avgwr">—</div></div>
+      <div class="stat"><div class="k">规则触发年数</div><div class="v" id="g_tri">—</div></div>
+    </div>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>年</th><th>期初本金</th><th>通胀草案</th><th>最终提取</th><th>提取率</th><th>市场</th><th>期末本金</th><th>触发</th></tr></thead>
+        <tbody id="g_body"><tr><td colspan="8"><div class="placeholder">选情景或自定义收益后，按「执行模拟」看逐年结果。</div></td></tr></tbody>
+      </table>
+    </div>
+    <div class="disclaimer">本工具为教学与情景探索用途，并非投资建议。GK 法则由 Jonathan Guyton 与 William Klinger 提出。</div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="prose" style="max-width:none">
+      <h2>GK 动态提取法则怎么运作？</h2>
+      <p>Guyton-Klinger（GK）是一套「动态提取」策略：不像固定 4% 法则每年机械式调整通胀，而是依市场表现动态增减提取金额，目标是让退休金在熊市时撑得更久、牛市时适度多取。每年的提取金额会依下列顺序计算：</p>
+      <ul>
+        <li><b>通胀调整草案</b>：上一年提取金额 ×（1＋通胀率）；第 1 年为本金 × 初始提取率。</li>
+        <li><b>冻涨规则</b>：若前一年市场为负、且草案提取率高于初始率，则跳过通胀调整，沿用去年金额。</li>
+        <li><b>资本保全 CPR</b>：当提取率超过「初始率 × 触发倍率」，砍掉一定比例，保护本金。</li>
+        <li><b>繁荣规则 PR</b>：当提取率低于「初始率 × 触发倍率」，适度提高提取，让你享受增长。</li>
+      </ul>
+      <h2>常见问题</h2>
+      <p><b>Q：这能保证我的钱不会花完吗？</b><br>不能。本工具仅以你输入的情景试算，市场实际收益无法预测。请把它当成「不同情景下会发生什么」的探索工具。</p>
+      <p><b>Q：输入的数字会被上传吗？</b><br>不会。所有计算都在你的浏览器内完成，我们不收集、不存储任何输入。</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="fl">
+    <a href="/zh-cn/tools/gk-withdrawal/">GK 动态提取</a>
+    <a href="/zh-cn/tools/rebalance/">资产再平衡</a>
+    <a href="/zh-cn/app/">App</a>
+    <a href="/zh-cn/privacy/">隐私权</a>
+    <a href="/zh-cn/about/">关于</a>
+  </div>
+  <div>© 2026 持衡理财 · 本站工具仅供教育与试算用途，不构成投资建议。</div>
+</footer>
+
+<script>window.LANG='zh-CN'</script>
+<script src="/assets/common.js"></script>
+<script src="/assets/gk.js"></script>
+</body>
+</html>

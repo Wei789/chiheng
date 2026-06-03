@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>资产再平衡计算器 · 持衡理财</title>
+<meta name="description" content="输入持有部位与目标配置，一键算出「投入新资金」或「完全重配」的买卖建议，附偏差显示与配置对比图。免费、免注册、浏览器内运算。">
+<link rel="canonical" href="https://chihengfinance.com/zh-cn/tools/rebalance/">
+<link rel="alternate" hreflang="zh-Hant" href="https://chihengfinance.com/tools/rebalance/">
+<link rel="alternate" hreflang="en" href="https://chihengfinance.com/en/tools/rebalance/">
+<link rel="alternate" hreflang="zh-Hans" href="https://chihengfinance.com/zh-cn/tools/rebalance/">
+<link rel="alternate" hreflang="ja" href="https://chihengfinance.com/ja/tools/rebalance/">
+<link rel="alternate" hreflang="x-default" href="https://chihengfinance.com/tools/rebalance/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="持衡理财">
+<meta property="og:title" content="资产再平衡计算器 · 持衡理财">
+<meta property="og:description" content="两种模式算出买卖建议：投入新资金或完全重配，含偏差显示与配置对比图。">
+<meta property="og:url" content="https://chihengfinance.com/zh-cn/tools/rebalance/">
+<meta property="og:image" content="https://chihengfinance.com/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="资产再平衡计算器 · 持衡理财">
+<meta name="twitter:description" content="两种模式算出买卖建议：投入新资金或完全重配。">
+<meta name="twitter:image" content="https://chihengfinance.com/assets/og.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "资产再平衡计算器",
+  "url": "https://chihengfinance.com/zh-cn/tools/rebalance/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "inLanguage": "zh-Hans",
+  "description": "输入持有与目标配置，算出投入新资金或完全重配的买卖建议。",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<header>
+  <nav>
+    <a class="brand" href="/zh-cn/"><span class="mk">持</span>持衡理财</a>
+    <a class="navlink" href="/zh-cn/">首页</a>
+    <a class="navlink" href="/zh-cn/tools/gk-withdrawal/">GK 动态提取</a>
+    <a class="navlink active" href="/zh-cn/tools/rebalance/">资产再平衡</a>
+    <a class="navlink" href="/zh-cn/app/">App</a>
+    <a class="navlink" href="/zh-cn/about/">关于</a>
+    <span class="langsw"><a href="/tools/rebalance/">繁</a><a href="/en/tools/rebalance/">EN</a><a href="/zh-cn/tools/rebalance/" class="on">简</a><a href="/ja/tools/rebalance/">日</a></span>
+  </nav>
+</header>
+
+<main>
+  <section>
+    <div class="tool-head">
+      <div class="eyebrow">Portfolio Rebalancing</div>
+      <h1 style="font-size:clamp(28px,5vw,42px)">资产 <em>再平衡</em> 计算器</h1>
+    </div>
+    <div class="grid2">
+      <div>
+        <div class="panel">
+          <h4><span class="no">1</span>你的持有与目标</h4>
+          <div class="seg">
+            <button id="m_new" class="on">投入新资金</button>
+            <button id="m_full">完全重配</button>
+          </div>
+          <div class="field" id="cashWrap"><label>投入新资金（元）</label><input id="r_cash" class="num" value="300000"></div>
+          <div style="font-size:11.5px;color:var(--ink-soft);margin:2px 0 10px">名称 · 当前市值 · 目标%</div>
+          <div id="r_rows"></div>
+          <button class="btn ghost btn-sm" id="r_add" style="margin-top:4px">＋ 新增标的</button>
+          <div id="r_warn" style="font-size:12px;color:var(--sell);margin-top:10px;display:none"></div>
+          <button class="btn" id="r_run" style="margin-top:14px">计算再平衡 →</button>
+        </div>
+      </div>
+      <div>
+        <div class="summary">
+          <div class="stat"><div class="k">当前总值</div><div class="v" id="r_total">—</div></div>
+          <div class="stat"><div class="k">再平衡后</div><div class="v" id="r_after">—</div></div>
+          <div class="stat"><div class="k">需动用</div><div class="v" id="r_move">—</div></div>
+        </div>
+        <div class="panel" style="margin-bottom:16px">
+          <h4>配置：当前 vs 目标</h4>
+          <div class="alloc" id="r_alloc"><div class="placeholder" style="padding:12px">按「计算再平衡」查看。</div></div>
+        </div>
+        <div class="tblwrap">
+          <table>
+            <thead><tr><th>标的</th><th>当前市值</th><th>当前%</th><th>目标%</th><th>建议动作</th></tr></thead>
+            <tbody id="r_body"><tr><td colspan="5"><div class="placeholder">输入持有与目标后计算。</div></td></tr></tbody>
+          </table>
+        </div>
+        <div class="disclaimer">想要自动追踪、多币别与 iCloud 同步？这是 WealthPoise App 的核心功能。<a href="/zh-cn/app/" style="color:var(--pine);text-decoration:underline">前往 App 介绍 →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="prose" style="max-width:none">
+      <h2>什么是再平衡？两种模式怎么选？</h2>
+      <p>随着市场涨跌，你的投资组合会慢慢偏离原本设定的配置比例。「再平衡」就是把它调回目标，控制风险、避免单一资产过度集中。本工具提供两种做法：</p>
+      <ul>
+        <li><b>投入新资金</b>：你有一笔闲置资金要投入。工具会优先把钱分配到「被低配」的标的，不卖出任何现有部位——适合定期定额、想省税省手续费的人。</li>
+        <li><b>完全重配</b>：直接给出精确的买进与卖出建议，使配置最贴近目标——适合年度大调整。</li>
+      </ul>
+      <h2>常见问题</h2>
+      <p><b>Q：目标%一定要加总 100% 吗？</b><br>是。若总和不是 100%，工具会提醒你调整，以免计算结果失真。</p>
+      <p><b>Q：我的持仓数据会被上传吗？</b><br>不会。计算全在浏览器内完成。想跨设备自动追踪，可考虑下载 WealthPoise App。</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="fl">
+    <a href="/zh-cn/tools/gk-withdrawal/">GK 动态提取</a>
+    <a href="/zh-cn/tools/rebalance/">资产再平衡</a>
+    <a href="/zh-cn/app/">App</a>
+    <a href="/zh-cn/privacy/">隐私权</a>
+    <a href="/zh-cn/about/">关于</a>
+  </div>
+  <div>© 2026 持衡理财 · 本站工具仅供教育与试算用途，不构成投资建议。</div>
+</footer>
+
+<script>window.LANG='zh-CN'</script>
+<script src="/assets/common.js"></script>
+<script src="/assets/rebalance.js"></script>
+</body>
+</html>
