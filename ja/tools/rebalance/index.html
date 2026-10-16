@@ -3,15 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,follow">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1805145736120420" crossorigin="anonymous"></script>
 <title>資産リバランス計算機 · 持衡理財</title>
 <meta name="description" content="保有銘柄と目標配分を入力すると、「新規資金の投入」または「完全リバランス」の売買提案を即座に算出。乖離表示と配分比較チャート付き。無料・登録不要・ブラウザ内で計算。">
 <link rel="canonical" href="https://chihengfinance.com/ja/tools/rebalance/">
-<link rel="alternate" hreflang="zh-Hant" href="https://chihengfinance.com/tools/rebalance/">
-<link rel="alternate" hreflang="en" href="https://chihengfinance.com/en/tools/rebalance/">
-<link rel="alternate" hreflang="zh-Hans" href="https://chihengfinance.com/zh-cn/tools/rebalance/">
-<link rel="alternate" hreflang="ja" href="https://chihengfinance.com/ja/tools/rebalance/">
-<link rel="alternate" hreflang="x-default" href="https://chihengfinance.com/tools/rebalance/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:site_name" content="持衡理財">
@@ -40,17 +36,22 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/style.css">
+<script>document.documentElement.classList.add('js')</script>
+<script src="/assets/nav.js" defer></script>
 </head>
 <body>
 <header>
-  <nav>
+  <nav aria-label="メインメニュー">
     <a class="brand" href="/ja/"><span class="mk">持</span>持衡理財</a>
-    <a class="navlink" href="/ja/">ホーム</a>
-    <a class="navlink" href="/ja/tools/gk-withdrawal/">GK 引き出し</a>
-    <a class="navlink active" href="/ja/tools/rebalance/">リバランス</a>
-    <a class="navlink" href="/ja/app/">App</a>
-    <a class="navlink" href="/ja/about/">概要</a>
-    <span class="langsw"><a href="/tools/rebalance/">繁</a><a href="/en/tools/rebalance/">EN</a><a href="/zh-cn/tools/rebalance/">简</a><a href="/ja/tools/rebalance/" class="on">日</a></span>
+    <button type="button" class="menu-btn" aria-expanded="false" aria-controls="site-menu"><svg class="i-open" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg><svg class="i-close" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg><span>メニュー</span></button>
+    <div class="menu" id="site-menu">
+      <a class="navlink" href="/ja/">ホーム</a>
+      <a class="navlink" href="/ja/tools/gk-withdrawal/">GK 引き出し</a>
+      <a class="navlink active" href="/ja/tools/rebalance/">リバランス</a>
+      <a class="navlink" href="/ja/app/">App</a>
+      <a class="navlink" href="/ja/about/">概要</a>
+      <span class="langsw"><a href="/tools/rebalance/">繁</a><a href="/en/tools/rebalance/">EN</a><a href="/zh-cn/tools/rebalance/">简</a><a href="/ja/tools/rebalance/" class="on">日</a></span>
+    </div>
   </nav>
 </header>
 
@@ -58,22 +59,22 @@
   <section>
     <div class="tool-head">
       <div class="eyebrow">Portfolio Rebalancing</div>
-      <h1 style="font-size:clamp(28px,5vw,42px)">資産 <em>リバランス</em> 計算機</h1>
+      <h1 style="font-size:clamp(1.75rem,1.2rem + 2.8vw,2.625rem)">資産 <em>リバランス</em> 計算機</h1>
     </div>
     <div class="grid2">
       <div>
         <div class="panel">
           <h4><span class="no">1</span>保有と目標</h4>
           <div class="seg">
-            <button id="m_new" class="on">新規資金の投入</button>
-            <button id="m_full">完全リバランス</button>
+            <button type="button" id="m_new" class="on" aria-pressed="true">新規資金の投入</button>
+            <button type="button" id="m_full" aria-pressed="false">完全リバランス</button>
           </div>
-          <div class="field" id="cashWrap"><label>投入する新規資金</label><input id="r_cash" class="num" value="300000"></div>
-          <div style="font-size:11.5px;color:var(--ink-soft);margin:2px 0 10px">名称 · 現在の評価額 · 目標%</div>
+          <div class="field" id="cashWrap"><label for="r_cash">投入する新規資金</label><input id="r_cash" class="num" inputmode="decimal" autocomplete="off" value="300000"></div>
+          <div class="holding-head" aria-hidden="true"><span>名称</span><span>現在の評価額</span><span>目標%</span></div>
           <div id="r_rows"></div>
-          <button class="btn ghost btn-sm" id="r_add" style="margin-top:4px">＋ 銘柄を追加</button>
-          <div id="r_warn" style="font-size:12px;color:var(--sell);margin-top:10px;display:none"></div>
-          <button class="btn" id="r_run" style="margin-top:14px">リバランスを計算 →</button>
+          <button type="button" class="btn ghost btn-sm" id="r_add" style="margin-top:4px">＋ 銘柄を追加</button>
+          <div id="r_warn" class="field-error" role="alert" hidden></div>
+          <button type="button" class="btn" id="r_run" style="margin-top:14px">リバランスを計算 →</button>
         </div>
       </div>
       <div>
@@ -119,6 +120,7 @@
     <a href="/ja/app/">App</a>
     <a href="/ja/privacy/">プライバシー</a>
     <a href="/ja/about/">概要</a>
+    <a href="/ja/about/#contact">お問い合わせ</a>
   </div>
   <div>© 2026 持衡理財 · 本サイトのツールは教育・試算用途のみで、投資助言ではありません。</div>
 </footer>

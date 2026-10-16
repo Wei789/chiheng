@@ -1,0 +1,5 @@
+# Cloudflare Pages：內部文件不對外公開，一律 302 導回首頁（_redirects / _headers 本身不會被 Pages 提供下載）
+/docs / 302
+/docs/* / 302
+/README.md / 302
+/.gitignore / 302

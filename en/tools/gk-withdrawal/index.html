@@ -3,15 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,follow">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1805145736120420" crossorigin="anonymous"></script>
 <title>GK Dynamic Withdrawal Simulator · Chiheng Finance</title>
 <meta name="description" content="Simulate retirement withdrawals year by year with the Guyton-Klinger rules — freeze, capital preservation (CPR) and prosperity (PR) — with 5 market scenarios. Runs entirely in your browser.">
 <link rel="canonical" href="https://chihengfinance.com/en/tools/gk-withdrawal/">
-<link rel="alternate" hreflang="zh-Hant" href="https://chihengfinance.com/tools/gk-withdrawal/">
-<link rel="alternate" hreflang="en" href="https://chihengfinance.com/en/tools/gk-withdrawal/">
-<link rel="alternate" hreflang="zh-Hans" href="https://chihengfinance.com/zh-cn/tools/gk-withdrawal/">
-<link rel="alternate" hreflang="ja" href="https://chihengfinance.com/ja/tools/gk-withdrawal/">
-<link rel="alternate" hreflang="x-default" href="https://chihengfinance.com/tools/gk-withdrawal/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Chiheng Finance">
@@ -40,17 +36,22 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/style.css">
+<script>document.documentElement.classList.add('js')</script>
+<script src="/assets/nav.js" defer></script>
 </head>
 <body>
 <header>
-  <nav>
+  <nav aria-label="Main">
     <a class="brand" href="/en/"><span class="mk">持</span>Chiheng Finance</a>
-    <a class="navlink" href="/en/">Home</a>
-    <a class="navlink active" href="/en/tools/gk-withdrawal/">GK Withdrawal</a>
-    <a class="navlink" href="/en/tools/rebalance/">Rebalance</a>
-    <a class="navlink" href="/en/app/">App</a>
-    <a class="navlink" href="/en/about/">About</a>
-    <span class="langsw"><a href="/tools/gk-withdrawal/">繁</a><a href="/en/tools/gk-withdrawal/" class="on">EN</a><a href="/zh-cn/tools/gk-withdrawal/">简</a><a href="/ja/tools/gk-withdrawal/">日</a></span>
+    <button type="button" class="menu-btn" aria-expanded="false" aria-controls="site-menu"><svg class="i-open" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg><svg class="i-close" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg><span>Menu</span></button>
+    <div class="menu" id="site-menu">
+      <a class="navlink" href="/en/">Home</a>
+      <a class="navlink active" href="/en/tools/gk-withdrawal/">GK Withdrawal</a>
+      <a class="navlink" href="/en/tools/rebalance/">Rebalance</a>
+      <a class="navlink" href="/en/app/">App</a>
+      <a class="navlink" href="/en/about/">About</a>
+      <span class="langsw"><a href="/tools/gk-withdrawal/">繁</a><a href="/en/tools/gk-withdrawal/" class="on">EN</a><a href="/zh-cn/tools/gk-withdrawal/">简</a><a href="/ja/tools/gk-withdrawal/">日</a></span>
+    </div>
   </nav>
 </header>
 
@@ -58,28 +59,28 @@
   <section>
     <div class="tool-head">
       <div class="eyebrow">Guyton-Klinger Rules</div>
-      <h1 style="font-size:clamp(28px,5vw,42px)">GK <em>Dynamic Withdrawal</em> Simulator</h1>
+      <h1 style="font-size:clamp(1.75rem,1.2rem + 2.8vw,2.625rem)">GK <em>Dynamic Withdrawal</em> Simulator</h1>
     </div>
 
     <div class="panel" style="margin-bottom:16px">
       <h4><span class="no">1</span>Principal & Baseline</h4>
       <div class="row2">
-        <div class="field"><label>Initial principal</label><input id="g_p" class="num" value="10000000"></div>
-        <div class="field"><label>Simulation years</label><input id="g_yr" class="num" value="30"></div>
+        <div class="field"><label for="g_p">Initial principal</label><input id="g_p" class="num" inputmode="decimal" autocomplete="off" value="10000000"></div>
+        <div class="field"><label for="g_yr">Simulation years</label><input id="g_yr" class="num" inputmode="decimal" autocomplete="off" value="30"></div>
       </div>
       <div class="row2">
-        <div class="field"><label>Initial withdrawal rate %</label><input id="g_wr" class="num" value="4"></div>
-        <div class="field"><label>Annual inflation %</label><input id="g_inf" class="num" value="2.5"></div>
+        <div class="field"><label for="g_wr">Initial withdrawal rate %</label><input id="g_wr" class="num" inputmode="decimal" autocomplete="off" value="4"></div>
+        <div class="field"><label for="g_inf">Annual inflation %</label><input id="g_inf" class="num" inputmode="decimal" autocomplete="off" value="2.5"></div>
       </div>
       <details>
         <summary>Advanced rule parameters</summary>
         <div class="row2">
-          <div class="field"><label>CPR trigger ratio ×</label><input id="g_cprT" class="num" value="1.2"></div>
-          <div class="field"><label>CPR cut %</label><input id="g_cprC" class="num" value="10"></div>
+          <div class="field"><label for="g_cprT">CPR trigger ratio ×</label><input id="g_cprT" class="num" inputmode="decimal" autocomplete="off" value="1.2"></div>
+          <div class="field"><label for="g_cprC">CPR cut %</label><input id="g_cprC" class="num" inputmode="decimal" autocomplete="off" value="10"></div>
         </div>
         <div class="row2">
-          <div class="field"><label>PR trigger ratio ×</label><input id="g_prT" class="num" value="0.8"></div>
-          <div class="field"><label>PR boost %</label><input id="g_prR" class="num" value="10"></div>
+          <div class="field"><label for="g_prT">PR trigger ratio ×</label><input id="g_prT" class="num" inputmode="decimal" autocomplete="off" value="0.8"></div>
+          <div class="field"><label for="g_prR">PR boost %</label><input id="g_prR" class="num" inputmode="decimal" autocomplete="off" value="10"></div>
         </div>
       </details>
     </div>
@@ -87,22 +88,22 @@
     <div class="panel" style="margin-bottom:16px">
       <h4><span class="no">2</span>Annual Market Returns</h4>
       <div class="chips" id="g_scen">
-        <span class="chip" data-s="bull">Bull → Bear</span>
-        <span class="chip" data-s="lost">Lost Decade</span>
-        <span class="chip" data-s="crash">Crash at Retirement</span>
-        <span class="chip" data-s="steady">Steady Growth</span>
-        <span class="chip" data-s="zero">All Zero</span>
+        <button type="button" class="chip" data-s="bull" aria-pressed="false">Bull → Bear</button>
+        <button type="button" class="chip" data-s="lost" aria-pressed="false">Lost Decade</button>
+        <button type="button" class="chip" data-s="crash" aria-pressed="false">Crash at Retirement</button>
+        <button type="button" class="chip" data-s="steady" aria-pressed="false">Steady Growth</button>
+        <button type="button" class="chip" data-s="zero" aria-pressed="false">All Zero</button>
       </div>
       <div class="cagr-row">
-        <div class="cagr-field"><label>Custom annual return %</label><input id="g_cagr" class="num" value="7"></div>
-        <button class="btn ghost btn-sm" id="g_gen">Generate random yearly returns →</button>
+        <div class="cagr-field"><label for="g_cagr">Custom annual return %</label><input id="g_cagr" class="num" inputmode="decimal" autocomplete="off" value="7"></div>
+        <button type="button" class="btn ghost btn-sm" id="g_gen">Generate random yearly returns →</button>
       </div>
       <div class="realized" id="g_realized"></div>
-      <div style="font-size:11.5px;color:var(--ink-soft);margin:14px 0 6px">Each year is editable (negatives shown in red):</div>
+      <p class="hint" style="margin:14px 0 6px">Each year is editable (negatives shown in red):</p>
       <div class="returns-grid" id="g_returns"></div>
     </div>
 
-    <button class="btn" id="g_run" style="margin-bottom:24px">Run simulation →</button>
+    <button type="button" class="btn" id="g_run" style="margin-bottom:24px">Run simulation →</button>
 
     <div class="summary s4">
       <div class="stat"><div class="k">Ending balance</div><div class="v" id="g_end">—</div></div>
@@ -143,6 +144,7 @@
     <a href="/en/app/">App</a>
     <a href="/en/privacy/">Privacy</a>
     <a href="/en/about/">About</a>
+    <a href="/en/about/#contact">Contact</a>
   </div>
   <div>© 2026 Chiheng Finance · Tools are for education and estimation only, not investment advice.</div>
 </footer>

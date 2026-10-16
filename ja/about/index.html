@@ -3,15 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,follow">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1805145736120420" crossorigin="anonymous"></script>
 <title>持衡理財について</title>
 <meta name="description" content="持衡理財はリタイアと資産配分のためのツールサイト。集中できて邪魔のない、ブラウザ内で動く無料の試算ツールを提供します。">
 <link rel="canonical" href="https://chihengfinance.com/ja/about/">
-<link rel="alternate" hreflang="zh-Hant" href="https://chihengfinance.com/about/">
-<link rel="alternate" hreflang="en" href="https://chihengfinance.com/en/about/">
-<link rel="alternate" hreflang="zh-Hans" href="https://chihengfinance.com/zh-cn/about/">
-<link rel="alternate" hreflang="ja" href="https://chihengfinance.com/ja/about/">
-<link rel="alternate" hreflang="x-default" href="https://chihengfinance.com/about/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:site_name" content="持衡理財">
@@ -27,28 +23,37 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/style.css">
+<script>document.documentElement.classList.add('js')</script>
+<script src="/assets/nav.js" defer></script>
 </head>
 <body>
 <header>
-  <nav>
+  <nav aria-label="メインメニュー">
     <a class="brand" href="/ja/"><span class="mk">持</span>持衡理財</a>
-    <a class="navlink" href="/ja/">ホーム</a>
-    <a class="navlink" href="/ja/tools/gk-withdrawal/">GK 引き出し</a>
-    <a class="navlink" href="/ja/tools/rebalance/">リバランス</a>
-    <a class="navlink" href="/ja/app/">App</a>
-    <a class="navlink active" href="/ja/about/">概要</a>
-    <span class="langsw"><a href="/about/">繁</a><a href="/en/about/">EN</a><a href="/zh-cn/about/">简</a><a href="/ja/about/" class="on">日</a></span>
+    <button type="button" class="menu-btn" aria-expanded="false" aria-controls="site-menu"><svg class="i-open" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg><svg class="i-close" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg><span>メニュー</span></button>
+    <div class="menu" id="site-menu">
+      <a class="navlink" href="/ja/">ホーム</a>
+      <a class="navlink" href="/ja/tools/gk-withdrawal/">GK 引き出し</a>
+      <a class="navlink" href="/ja/tools/rebalance/">リバランス</a>
+      <a class="navlink" href="/ja/app/">App</a>
+      <a class="navlink active" href="/ja/about/">概要</a>
+      <span class="langsw"><a href="/about/">繁</a><a href="/en/about/">EN</a><a href="/zh-cn/about/">简</a><a href="/ja/about/" class="on">日</a></span>
+    </div>
   </nav>
 </header>
 
 <main>
   <section class="prose">
     <div class="eyebrow">本サイトについて</div>
-    <h1 style="font-size:clamp(28px,5vw,40px)"><em>持衡</em>について</h1>
+    <h1 style="font-size:clamp(1.75rem,1.2rem + 2.6vw,2.5rem)"><em>持衡</em>について</h1>
     <p style="margin-top:18px">持衡理財は、リタイアと資産配分のための集中できて邪魔のない試算ツールを提供します。良い金融判断は、広告とノイズだらけの画面ではなく、明確な数字から生まれると考えています。すべての計算はブラウザ内で完結し、入力された財務データを収集・保存することはありません。</p>
     <h2>提供するもの</h2>
     <p><b>GK 動的引き出しシミュレーター</b>——Guyton-Klinger ルールで退職後の引き出しを年ごとにシミュレートし、市場シナリオごとの退職資金の長期的な推移を把握できます。</p>
     <p><b>資産リバランス計算機</b>——保有と目標配分を入力し、新規資金の投入やリバランスの方法を算出して、ポートフォリオを設定したバランスへ戻します。</p>
+    <h2 id="contact">運営者</h2>
+    <p>運営者：持衡理財チーム</p>
+    <p>持衡理財チームは、良いリタイアメントプランは複雑であるべきではないと考えています。専門的な取り崩しと資産配分の手法を、無料・登録不要のツールにし、誰もが自分で数字を確かめられるようにしています。</p>
+    <p>連絡先メール：<a class="email-link" data-user="revok117" data-domain="hotmail.com"></a><noscript>revok117 [at] hotmail.com</noscript></p>
     <h2>WealthPoise について</h2>
     <p>一度きりの試算を、持ち歩ける自動追跡の長期的な規律に変えたい方は、iOS アプリ <a href="/ja/app/" style="color:var(--pine);text-decoration:underline">WealthPoise</a> をご覧ください。</p>
     <div class="disclaimer">本サイトのすべてのツールとコンテンツは教育・試算用途のみで、投資助言を構成しません。投資にはリスクが伴います。慎重にご判断ください。詳しくは<a href="/ja/privacy/" style="color:var(--pine);text-decoration:underline">プライバシーポリシー</a>をご覧ください。</div>
@@ -62,6 +67,7 @@
     <a href="/ja/app/">App</a>
     <a href="/ja/privacy/">プライバシー</a>
     <a href="/ja/about/">概要</a>
+    <a href="/ja/about/#contact">お問い合わせ</a>
   </div>
   <div>© 2026 持衡理財 · 本サイトのツールは教育・試算用途のみで、投資助言ではありません。</div>
 </footer>

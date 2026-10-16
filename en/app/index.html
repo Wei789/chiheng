@@ -3,15 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,follow">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1805145736120420" crossorigin="anonymous"></script>
 <title>WealthPoise iOS App · Chiheng Finance</title>
 <meta name="description" content="WealthPoise is a smart portfolio rebalancing app: track TW/US/HK/JP stocks and ETFs, automatic multi-currency conversion, net-worth tracking, drift alerts and iCloud sync.">
 <link rel="canonical" href="https://chihengfinance.com/en/app/">
-<link rel="alternate" hreflang="zh-Hant" href="https://chihengfinance.com/app/">
-<link rel="alternate" hreflang="en" href="https://chihengfinance.com/en/app/">
-<link rel="alternate" hreflang="zh-Hans" href="https://chihengfinance.com/zh-cn/app/">
-<link rel="alternate" hreflang="ja" href="https://chihengfinance.com/ja/app/">
-<link rel="alternate" hreflang="x-default" href="https://chihengfinance.com/app/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Chiheng Finance">
@@ -27,17 +23,22 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/style.css">
+<script>document.documentElement.classList.add('js')</script>
+<script src="/assets/nav.js" defer></script>
 </head>
 <body>
 <header>
-  <nav>
+  <nav aria-label="Main">
     <a class="brand" href="/en/"><span class="mk">持</span>Chiheng Finance</a>
-    <a class="navlink" href="/en/">Home</a>
-    <a class="navlink" href="/en/tools/gk-withdrawal/">GK Withdrawal</a>
-    <a class="navlink" href="/en/tools/rebalance/">Rebalance</a>
-    <a class="navlink active" href="/en/app/">App</a>
-    <a class="navlink" href="/en/about/">About</a>
-    <span class="langsw"><a href="/app/">繁</a><a href="/en/app/" class="on">EN</a><a href="/zh-cn/app/">简</a><a href="/ja/app/">日</a></span>
+    <button type="button" class="menu-btn" aria-expanded="false" aria-controls="site-menu"><svg class="i-open" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg><svg class="i-close" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg><span>Menu</span></button>
+    <div class="menu" id="site-menu">
+      <a class="navlink" href="/en/">Home</a>
+      <a class="navlink" href="/en/tools/gk-withdrawal/">GK Withdrawal</a>
+      <a class="navlink" href="/en/tools/rebalance/">Rebalance</a>
+      <a class="navlink active" href="/en/app/">App</a>
+      <a class="navlink" href="/en/about/">About</a>
+      <span class="langsw"><a href="/app/">繁</a><a href="/en/app/" class="on">EN</a><a href="/zh-cn/app/">简</a><a href="/ja/app/">日</a></span>
+    </div>
   </nav>
 </header>
 
@@ -46,7 +47,7 @@
     <div class="app-hero">
       <div>
         <div class="eyebrow">iOS App</div>
-        <h1 style="font-size:clamp(30px,5vw,46px)">WealthPoise</h1>
+        <h1 style="font-size:clamp(1.875rem,1.2rem + 3vw,2.875rem)">WealthPoise</h1>
         <p class="lead">Smart portfolio rebalancing. Track stocks in Taiwan, the US, Hong Kong and Japan, with automatic multi-currency conversion, net-worth tracking, drift alerts and iCloud sync — turning a one-off estimate into a daily discipline.</p>
         <a class="appbtn" href="https://apps.apple.com/tw/app/wealthpoise/id6761033109" target="_blank" rel="noopener">Download on the App Store</a>
         <ul class="feat">
@@ -75,6 +76,7 @@
     <a href="/en/app/">App</a>
     <a href="/en/privacy/">Privacy</a>
     <a href="/en/about/">About</a>
+    <a href="/en/about/#contact">Contact</a>
   </div>
   <div>© 2026 Chiheng Finance · Tools are for education and estimation only, not investment advice.</div>
 </footer>

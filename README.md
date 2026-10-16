@@ -6,14 +6,28 @@
 
 ```
 index.html                  首頁
-tools/gk-withdrawal/        GK 動態提領模擬器
-tools/rebalance/            資產再平衡計算機
+tools/                      工具總覽
+tools/gk-withdrawal/        GK 動態提領模擬器（含原理、範例、FAQ）
+tools/rebalance/            資產再平衡計算機（含原理、範例、FAQ）
+articles/                   文章索引與 8 篇繁中長文（articles/<slug>/）
 app/                        WealthPoise 下載導流頁
-privacy/                    隱私權政策
-about/                      關於
+about/  contact/  privacy/  關於我們、聯絡方式、隱私權政策
+en/  zh-cn/  ja/            其他語言（noindex,follow，不列入 sitemap）
 assets/                     style.css / common.js / gk.js / rebalance.js
-sitemap.xml  robots.txt
+docs/                       ADSENSE_SETUP.md（AdSense 後台步驟）、PLACEHOLDERS.md（營運者資料填寫紀錄）、UX_AUDIT.md（體驗規範稽核）
+sitemap.xml  robots.txt  ads.txt
+_redirects                  Cloudflare Pages 轉址：/docs/*、/README.md 等內部檔案 302 導回首頁
 ```
+
+## 內部文件不公開
+
+網站根目錄就是 repo 根目錄，所以 `docs/`、`README.md` 原本會被公開存取。根目錄的 `_redirects`（Cloudflare Pages 專用，檔案本身不會被提供下載）把下列路徑 302 導回首頁：
+
+```
+/docs  /docs/*  /README.md  /.gitignore
+```
+
+新增其他內部檔案時，放進 `docs/` 即自動套用；放在別處就要在 `_redirects` 加一行。注意：本機用 `python3 -m http.server` 預覽時不會套用此規則。
 
 ## 本機預覽
 
@@ -33,9 +47,12 @@ python3 -m http.server 8765
 > 若日後要換網域，在 site 資料夾執行（把 NEW-DOMAIN 換成新網域）：
 > `grep -rl "chihengfinance.com" . --exclude=README.md | xargs sed -i '' 's/chihengfinance\.com/NEW-DOMAIN/g'`
 
-## 還沒補的素材
+## 廣告與 Cookie 同意
 
-- `assets/og.png`：社群分享縮圖（建議 1200×630），目前 OG 標籤指向它但檔案還沒放。沒放不會壞，只是分享預覽沒圖。
+- 廣告版位總開關：`assets/common.js` 的 `ADS_ENABLED`（預設 `false`）與 `AD_SLOTS`。只用手動頁內版位；AdSense「自動廣告」（含插頁／Vignette、錨定）必須保持關閉。
+- 介面須符合團隊《簡單體驗設計規範》（字級 rem、對比 ≥ 7:1 含深色模式、點擊區 ≥ 48px、廣告規則），稽核結果見 `docs/UX_AUDIT.md`。
+- Cookie 同意使用 AdSense 內建的 Google「隱私權與訊息」CMP，頁尾「Cookie 設定」可重新開啟。
+- 後台設定步驟見 `docs/ADSENSE_SETUP.md`；營運者資料的填寫位置見 `docs/PLACEHOLDERS.md`。
 
 ## 部署到 Cloudflare Pages（規格第 6.4）
 

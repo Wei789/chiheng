@@ -5,13 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1805145736120420" crossorigin="anonymous"></script>
 <title>持衡理財 · 退休與資產配置工具</title>
-<meta name="description" content="兩個專注的免費理財工具：Guyton-Klinger 動態提領模擬器與資產再平衡計算機。全程瀏覽器運算、不需註冊、不蒐集資料。">
+<meta name="description" content="Guyton-Klinger 動態提領模擬器、資產再平衡計算機，以及 4% 法則、順序風險、通膨與再平衡的原理文章。全程瀏覽器運算、不需註冊、不蒐集資料。">
 <link rel="canonical" href="https://chihengfinance.com/">
-<link rel="alternate" hreflang="zh-Hant" href="https://chihengfinance.com/">
-<link rel="alternate" hreflang="en" href="https://chihengfinance.com/en/">
-<link rel="alternate" hreflang="zh-Hans" href="https://chihengfinance.com/zh-cn/">
-<link rel="alternate" hreflang="ja" href="https://chihengfinance.com/ja/">
-<link rel="alternate" hreflang="x-default" href="https://chihengfinance.com/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:site_name" content="持衡理財">
@@ -27,17 +22,21 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/style.css">
+<script>document.documentElement.classList.add('js')</script>
+<script src="/assets/nav.js" defer></script>
 </head>
 <body>
 <header>
-  <nav>
+  <nav aria-label="主選單">
     <a class="brand" href="/"><span class="mk">持</span>持衡理財</a>
-    <a class="navlink active" href="/">首頁</a>
-    <a class="navlink" href="/tools/gk-withdrawal/">GK 動態提領</a>
-    <a class="navlink" href="/tools/rebalance/">資產再平衡</a>
-    <a class="navlink" href="/app/">App</a>
-    <a class="navlink" href="/about/">關於</a>
-    <span class="langsw"><a href="/" class="on">繁</a><a href="/en/">EN</a><a href="/zh-cn/">简</a><a href="/ja/">日</a></span>
+    <button type="button" class="menu-btn" aria-expanded="false" aria-controls="site-menu"><svg class="i-open" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg><svg class="i-close" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg><span>選單</span></button>
+    <div class="menu" id="site-menu">
+      <a class="navlink" href="/tools/">工具</a>
+      <a class="navlink" href="/articles/">文章</a>
+      <a class="navlink" href="/about/">關於我們</a>
+      <a class="navlink" href="/contact/">聯絡方式</a>
+      <span class="langsw"><a href="/" class="on">繁</a><a href="/en/">EN</a><a href="/zh-cn/">简</a><a href="/ja/">日</a></span>
+    </div>
   </nav>
 </header>
 
@@ -48,30 +47,66 @@
     <p class="lead">兩個專注的免費工具：用 Guyton-Klinger 法則模擬動態提領的長期結果，並計算你的投資組合該如何再平衡。全程在瀏覽器運算，不需註冊、不蒐集資料。</p>
     <div class="tools-grid">
       <a class="tool-card" href="/tools/gk-withdrawal/">
-        <span class="tag">Tool 01</span>
+        <span class="tag">工具 01</span>
         <h3>GK 動態提領模擬器</h3>
-        <p>以 Guyton-Klinger 規則逐年模擬退休提領，含凍漲、資本保全與繁榮規則，看你的本金能撐多久。</p>
+        <p>以 Guyton-Klinger 規則逐年模擬退休提領，含通膨凍結、保本調降與繁榮調升規則，看你的本金能撐多久。</p>
         <span class="arrow">開始模擬 →</span>
       </a>
       <a class="tool-card" href="/tools/rebalance/">
-        <span class="tag">Tool 02</span>
+        <span class="tag">工具 02</span>
         <h3>資產再平衡計算機</h3>
         <p>輸入目前持有與目標配置，一鍵算出「投入新資金」或「完全重配」的買賣建議。</p>
         <span class="arrow">開始計算 →</span>
       </a>
     </div>
   </section>
+
+  <section>
+    <div class="eyebrow">文章</div>
+    <h2>先讀懂原理，再動手試算</h2>
+    <p style="color:var(--ink-soft);max-width:64ch">工具只是計算，真正的決策需要理解背後的假設。我們的文章用實際算式說明退休提領與資產配置的核心觀念，每篇都連回對應的工具，讓你用自己的數字驗證。</p>
+    <div class="article-list">
+      <a class="tool-card" href="/articles/4-percent-rule/">
+        <span class="tag">退休提領</span>
+        <h3>4% 法則是什麼？算法、由來與五個常被忽略的限制</h3>
+        <p>拆解 4% 法則的算法與由來，以及它在期限、費用與彈性上的限制。</p>
+        <span class="arrow">閱讀全文 →</span>
+      </a>
+      <a class="tool-card" href="/articles/sequence-of-returns-risk/">
+        <span class="tag">退休提領</span>
+        <h3>順序風險：為什麼退休頭幾年的報酬最關鍵？</h3>
+        <p>同樣的報酬、相反的順序，用逐年算式看懂退休初期報酬為何最關鍵。</p>
+        <span class="arrow">閱讀全文 →</span>
+      </a>
+      <a class="tool-card" href="/articles/gk-guardrails-implementation/">
+        <span class="tag">退休提領</span>
+        <h3>GK 護欄法則實作指南：參數怎麼選、每年怎麼檢查</h3>
+        <p>從參數選擇、預算拆分到年度檢查，附 4 年逐步計算的實作流程。</p>
+        <span class="arrow">閱讀全文 →</span>
+      </a>
+      <a class="tool-card" href="/articles/inflation-and-withdrawals/">
+        <span class="tag">退休提領</span>
+        <h3>通膨如何影響退休提領？購買力、實質報酬與提領計畫的試算</h3>
+        <p>用算式看通膨對生活費、購買力與實質報酬的影響，以及提領計畫怎麼因應。</p>
+        <span class="arrow">閱讀全文 →</span>
+      </a>
+    </div>
+    <p style="margin-top:22px"><a class="more-link" href="/articles/">看全部 8 篇文章 →</a></p>
+  </section>
 </main>
 
 <footer>
   <div class="fl">
-    <a href="/tools/gk-withdrawal/">GK 動態提領</a>
-    <a href="/tools/rebalance/">資產再平衡</a>
+    <a href="/tools/">工具</a>
+    <a href="/articles/">文章</a>
     <a href="/app/">App</a>
-    <a href="/privacy/">隱私權</a>
-    <a href="/about/">關於</a>
+    <a href="/about/">關於我們</a>
+    <a href="/contact/">聯絡方式</a>
+    <a href="/privacy/">隱私權政策</a>
+    <a href="#" class="cookie-settings" role="button">Cookie 設定</a>
   </div>
-  <div>© 2026 持衡理財 · 本站工具僅供教育與試算用途，不構成投資建議。</div>
+  <div>© 2026 持衡理財 · 本站工具與文章僅供教育與試算用途，不構成投資建議。</div>
 </footer>
+<script src="/assets/common.js"></script>
 </body>
 </html>

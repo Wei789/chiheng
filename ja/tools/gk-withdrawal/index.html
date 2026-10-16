@@ -3,25 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,follow">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1805145736120420" crossorigin="anonymous"></script>
 <title>GK 動的引き出しシミュレーター · 持衡理財</title>
-<meta name="description" content="Guyton-Klinger ルールで退職後の動的引き出しを年ごとにシミュレート。凍結・資本保全(CPR)・繁栄ルール(PR)と5つの市場シナリオを搭載、すべてブラウザ内で計算。">
+<meta name="description" content="Guyton-Klinger ルールで退職後の動的引き出しを年ごとにシミュレート。凍結・資本保全・繁栄ルールと5つの市場シナリオを搭載、すべてブラウザ内で計算。">
 <link rel="canonical" href="https://chihengfinance.com/ja/tools/gk-withdrawal/">
-<link rel="alternate" hreflang="zh-Hant" href="https://chihengfinance.com/tools/gk-withdrawal/">
-<link rel="alternate" hreflang="en" href="https://chihengfinance.com/en/tools/gk-withdrawal/">
-<link rel="alternate" hreflang="zh-Hans" href="https://chihengfinance.com/zh-cn/tools/gk-withdrawal/">
-<link rel="alternate" hreflang="ja" href="https://chihengfinance.com/ja/tools/gk-withdrawal/">
-<link rel="alternate" hreflang="x-default" href="https://chihengfinance.com/tools/gk-withdrawal/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:site_name" content="持衡理財">
 <meta property="og:title" content="GK 動的引き出しシミュレーター · 持衡理財">
-<meta property="og:description" content="Guyton-Klinger 動的引き出しの年次シミュレーション。凍結・CPR・PR ルールと5つの市場シナリオ。">
+<meta property="og:description" content="Guyton-Klinger 動的引き出しの年次シミュレーション。凍結・資本保全・繁栄ルールと5つの市場シナリオ。">
 <meta property="og:url" content="https://chihengfinance.com/ja/tools/gk-withdrawal/">
 <meta property="og:image" content="https://chihengfinance.com/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="GK 動的引き出しシミュレーター · 持衡理財">
-<meta name="twitter:description" content="Guyton-Klinger 動的引き出しの年次シミュレーション。凍結・CPR・PR ルール。">
+<meta name="twitter:description" content="Guyton-Klinger 動的引き出しの年次シミュレーション。凍結・資本保全・繁栄ルール。">
 <meta name="twitter:image" content="https://chihengfinance.com/assets/og.png">
 <script type="application/ld+json">
 {
@@ -40,17 +36,22 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/style.css">
+<script>document.documentElement.classList.add('js')</script>
+<script src="/assets/nav.js" defer></script>
 </head>
 <body>
 <header>
-  <nav>
+  <nav aria-label="メインメニュー">
     <a class="brand" href="/ja/"><span class="mk">持</span>持衡理財</a>
-    <a class="navlink" href="/ja/">ホーム</a>
-    <a class="navlink active" href="/ja/tools/gk-withdrawal/">GK 引き出し</a>
-    <a class="navlink" href="/ja/tools/rebalance/">リバランス</a>
-    <a class="navlink" href="/ja/app/">App</a>
-    <a class="navlink" href="/ja/about/">概要</a>
-    <span class="langsw"><a href="/tools/gk-withdrawal/">繁</a><a href="/en/tools/gk-withdrawal/">EN</a><a href="/zh-cn/tools/gk-withdrawal/">简</a><a href="/ja/tools/gk-withdrawal/" class="on">日</a></span>
+    <button type="button" class="menu-btn" aria-expanded="false" aria-controls="site-menu"><svg class="i-open" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg><svg class="i-close" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg><span>メニュー</span></button>
+    <div class="menu" id="site-menu">
+      <a class="navlink" href="/ja/">ホーム</a>
+      <a class="navlink active" href="/ja/tools/gk-withdrawal/">GK 引き出し</a>
+      <a class="navlink" href="/ja/tools/rebalance/">リバランス</a>
+      <a class="navlink" href="/ja/app/">App</a>
+      <a class="navlink" href="/ja/about/">概要</a>
+      <span class="langsw"><a href="/tools/gk-withdrawal/">繁</a><a href="/en/tools/gk-withdrawal/">EN</a><a href="/zh-cn/tools/gk-withdrawal/">简</a><a href="/ja/tools/gk-withdrawal/" class="on">日</a></span>
+    </div>
   </nav>
 </header>
 
@@ -58,28 +59,28 @@
   <section>
     <div class="tool-head">
       <div class="eyebrow">Guyton-Klinger Rules</div>
-      <h1 style="font-size:clamp(28px,5vw,42px)">GK <em>動的引き出し</em> シミュレーター</h1>
+      <h1 style="font-size:clamp(1.75rem,1.2rem + 2.8vw,2.625rem)">GK <em>動的引き出し</em> シミュレーター</h1>
     </div>
 
     <div class="panel" style="margin-bottom:16px">
       <h4><span class="no">1</span>元本と基準</h4>
       <div class="row2">
-        <div class="field"><label>初期元本</label><input id="g_p" class="num" value="10000000"></div>
-        <div class="field"><label>シミュレーション年数</label><input id="g_yr" class="num" value="30"></div>
+        <div class="field"><label for="g_p">初期元本</label><input id="g_p" class="num" inputmode="decimal" autocomplete="off" value="10000000"></div>
+        <div class="field"><label for="g_yr">シミュレーション年数</label><input id="g_yr" class="num" inputmode="decimal" autocomplete="off" value="30"></div>
       </div>
       <div class="row2">
-        <div class="field"><label>初期引き出し率 %</label><input id="g_wr" class="num" value="4"></div>
-        <div class="field"><label>年間インフレ率 %</label><input id="g_inf" class="num" value="2.5"></div>
+        <div class="field"><label for="g_wr">初期引き出し率 %</label><input id="g_wr" class="num" inputmode="decimal" autocomplete="off" value="4"></div>
+        <div class="field"><label for="g_inf">年間インフレ率 %</label><input id="g_inf" class="num" inputmode="decimal" autocomplete="off" value="2.5"></div>
       </div>
       <details>
         <summary>詳細ルール設定</summary>
         <div class="row2">
-          <div class="field"><label>CPR 発動倍率 ×</label><input id="g_cprT" class="num" value="1.2"></div>
-          <div class="field"><label>CPR 削減 %</label><input id="g_cprC" class="num" value="10"></div>
+          <div class="field"><label for="g_cprT">資本保全 発動倍率 ×</label><input id="g_cprT" class="num" inputmode="decimal" autocomplete="off" value="1.2"></div>
+          <div class="field"><label for="g_cprC">資本保全 削減 %</label><input id="g_cprC" class="num" inputmode="decimal" autocomplete="off" value="10"></div>
         </div>
         <div class="row2">
-          <div class="field"><label>PR 発動倍率 ×</label><input id="g_prT" class="num" value="0.8"></div>
-          <div class="field"><label>PR 増額 %</label><input id="g_prR" class="num" value="10"></div>
+          <div class="field"><label for="g_prT">繁栄 発動倍率 ×</label><input id="g_prT" class="num" inputmode="decimal" autocomplete="off" value="0.8"></div>
+          <div class="field"><label for="g_prR">繁栄 増額 %</label><input id="g_prR" class="num" inputmode="decimal" autocomplete="off" value="10"></div>
         </div>
       </details>
     </div>
@@ -87,22 +88,22 @@
     <div class="panel" style="margin-bottom:16px">
       <h4><span class="no">2</span>各年の市場リターン</h4>
       <div class="chips" id="g_scen">
-        <span class="chip" data-s="bull">強気→弱気</span>
-        <span class="chip" data-s="lost">失われた10年</span>
-        <span class="chip" data-s="crash">退職初年に暴落</span>
-        <span class="chip" data-s="steady">安定成長</span>
-        <span class="chip" data-s="zero">全てゼロ</span>
+        <button type="button" class="chip" data-s="bull" aria-pressed="false">強気→弱気</button>
+        <button type="button" class="chip" data-s="lost" aria-pressed="false">失われた10年</button>
+        <button type="button" class="chip" data-s="crash" aria-pressed="false">退職初年に暴落</button>
+        <button type="button" class="chip" data-s="steady" aria-pressed="false">安定成長</button>
+        <button type="button" class="chip" data-s="zero" aria-pressed="false">全てゼロ</button>
       </div>
       <div class="cagr-row">
-        <div class="cagr-field"><label>年率リターン指定 %</label><input id="g_cagr" class="num" value="7"></div>
-        <button class="btn ghost btn-sm" id="g_gen">各年リターンをランダム生成 →</button>
+        <div class="cagr-field"><label for="g_cagr">年率リターン指定 %</label><input id="g_cagr" class="num" inputmode="decimal" autocomplete="off" value="7"></div>
+        <button type="button" class="btn ghost btn-sm" id="g_gen">各年リターンをランダム生成 →</button>
       </div>
       <div class="realized" id="g_realized"></div>
-      <div style="font-size:11.5px;color:var(--ink-soft);margin:14px 0 6px">各年は手動で微調整できます（マイナスは赤表示）：</div>
+      <p class="hint" style="margin:14px 0 6px">各年は手動で微調整できます（マイナスは赤表示）：</p>
       <div class="returns-grid" id="g_returns"></div>
     </div>
 
-    <button class="btn" id="g_run" style="margin-bottom:24px">シミュレーション実行 →</button>
+    <button type="button" class="btn" id="g_run" style="margin-bottom:24px">シミュレーション実行 →</button>
 
     <div class="summary s4">
       <div class="stat"><div class="k">期末元本</div><div class="v" id="g_end">—</div></div>
@@ -116,6 +117,7 @@
         <tbody id="g_body"><tr><td colspan="8"><div class="placeholder">シナリオを選ぶか年率を指定し、「シミュレーション実行」を押してください。</div></td></tr></tbody>
       </table>
     </div>
+    <div class="trig-legend"><p>「発動」列のラベル：</p><ul><li><span class="trig t-fz">凍結</span>（Inflation rule / freeze）前年が下落し引出率も高いため、今年はインフレ調整なし。</li><li><span class="trig t-cpr">資本保全</span>（Capital Preservation）引出率が高すぎるため減額。</li><li><span class="trig t-pr">繁栄</span>（Prosperity）引出率が低すぎるため増額。</li></ul></div>
     <div class="disclaimer">本ツールは教育・シナリオ探索用途であり、投資助言ではありません。GK ルールは Jonathan Guyton と William Klinger により提唱されました。</div>
   </section>
 
@@ -126,8 +128,8 @@
       <ul>
         <li><b>インフレ調整案</b>：前年の引き出し額 ×（1＋インフレ率）；1年目は元本 × 初期引き出し率。</li>
         <li><b>凍結ルール</b>：前年の市場がマイナス かつ 案の引出率が初期率を上回る場合、インフレ調整をスキップし前年額を維持。</li>
-        <li><b>資本保全（CPR）</b>：引出率が「初期率 × 発動倍率」を超えると、一定割合を削減し元本を保護。</li>
-        <li><b>繁栄ルール（PR）</b>：引出率が「初期率 × 発動倍率」を下回ると、適度に引き出しを増額し成長を享受。</li>
+        <li><b>資本保全（Capital Preservation）</b>：引出率が「初期率 × 発動倍率」を超えると、一定割合を削減し元本を保護。</li>
+        <li><b>繁栄ルール（Prosperity）</b>：引出率が「初期率 × 発動倍率」を下回ると、適度に引き出しを増額し成長を享受。</li>
       </ul>
       <h2>よくある質問</h2>
       <p><b>Q：資金が尽きないことを保証しますか？</b><br>いいえ。入力したシナリオで試算するだけで、実際の市場リターンは予測できません。「異なるシナリオで何が起こるか」を探るツールとお考えください。</p>
@@ -143,6 +145,7 @@
     <a href="/ja/app/">App</a>
     <a href="/ja/privacy/">プライバシー</a>
     <a href="/ja/about/">概要</a>
+    <a href="/ja/about/#contact">お問い合わせ</a>
   </div>
   <div>© 2026 持衡理財 · 本サイトのツールは教育・試算用途のみで、投資助言ではありません。</div>
 </footer>

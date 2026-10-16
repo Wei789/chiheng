@@ -1,30 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://chihengfinance.com/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://chihengfinance.com/tools/gk-withdrawal/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://chihengfinance.com/tools/rebalance/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://chihengfinance.com/app/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://chihengfinance.com/about/</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://chihengfinance.com/privacy/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-
-  <url><loc>https://chihengfinance.com/en/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://chihengfinance.com/en/tools/gk-withdrawal/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://chihengfinance.com/en/tools/rebalance/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://chihengfinance.com/en/app/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://chihengfinance.com/en/about/</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://chihengfinance.com/en/privacy/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-
-  <url><loc>https://chihengfinance.com/zh-cn/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://chihengfinance.com/zh-cn/tools/gk-withdrawal/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://chihengfinance.com/zh-cn/tools/rebalance/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://chihengfinance.com/zh-cn/app/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://chihengfinance.com/zh-cn/about/</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://chihengfinance.com/zh-cn/privacy/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-
-  <url><loc>https://chihengfinance.com/ja/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://chihengfinance.com/ja/tools/gk-withdrawal/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://chihengfinance.com/ja/tools/rebalance/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://chihengfinance.com/ja/app/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://chihengfinance.com/ja/about/</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://chihengfinance.com/ja/privacy/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://chihengfinance.com/</loc><lastmod>2026-10-16</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://chihengfinance.com/tools/</loc><lastmod>2026-10-16</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://chihengfinance.com/tools/gk-withdrawal/</loc><lastmod>2026-10-16</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://chihengfinance.com/tools/rebalance/</loc><lastmod>2026-10-16</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://chihengfinance.com/articles/</loc><lastmod>2026-10-16</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chihengfinance.com/articles/4-percent-rule/</loc><lastmod>2026-10-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chihengfinance.com/articles/sequence-of-returns-risk/</loc><lastmod>2026-10-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chihengfinance.com/articles/gk-guardrails-implementation/</loc><lastmod>2026-10-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chihengfinance.com/articles/inflation-and-withdrawals/</loc><lastmod>2026-10-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chihengfinance.com/articles/retirement-bucket-strategy/</loc><lastmod>2026-10-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chihengfinance.com/articles/stock-bond-allocation-by-age/</loc><lastmod>2026-10-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chihengfinance.com/articles/rebalancing-frequency-threshold-vs-calendar/</loc><lastmod>2026-10-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chihengfinance.com/articles/rebalancing-costs-and-cashflow/</loc><lastmod>2026-10-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chihengfinance.com/app/</loc><lastmod>2026-10-16</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://chihengfinance.com/about/</loc><lastmod>2026-10-16</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://chihengfinance.com/contact/</loc><lastmod>2026-10-16</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://chihengfinance.com/privacy/</loc><lastmod>2026-10-16</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>
