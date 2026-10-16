@@ -8,9 +8,10 @@ let rowSeq = 0;
 function addRow(n='', v='', t='', before=null) {
   const d = document.createElement('div'); d.className = 'holding-row';
   const k = ++rowSeq;
-  d.innerHTML = `<input class="nm" id="r_nm${k}" aria-label="${esc(T('phName'))}" placeholder="${esc(T('phName'))}" value="${esc(n)}" autocomplete="off">
-    <input class="num v" id="r_v${k}" inputmode="decimal" aria-label="${esc(T('phValue'))}" placeholder="${esc(T('phValue'))}" value="${esc(v)}" autocomplete="off">
-    <input class="num t" id="r_t${k}" inputmode="decimal" aria-label="${esc(T('phTarget'))}" placeholder="${esc(T('phTarget'))}" value="${esc(t)}" autocomplete="off">
+  /* 每格都有 <label>：桌機只給讀屏（上方有欄名），手機（<640px）每列變成卡片並顯示標籤 */
+  d.innerHTML = `<div class="hf hf-nm"><label for="r_nm${k}">${T('phName')}</label><input class="nm" id="r_nm${k}" placeholder="${esc(T('phName'))}" value="${esc(n)}" autocomplete="off"></div>
+    <div class="hf"><label for="r_v${k}">${T('phValue')}</label><input class="num v" id="r_v${k}" inputmode="decimal" placeholder="${esc(T('phValue'))}" value="${esc(v)}" autocomplete="off"></div>
+    <div class="hf"><label for="r_t${k}">${T('phTarget')}</label><input class="num t" id="r_t${k}" inputmode="decimal" placeholder="${esc(T('phTarget'))}" value="${esc(t)}" autocomplete="off"></div>
     <button type="button" class="del">${T('delRow')}</button>`;
   const delBtn = d.querySelector('.del');
   const label = () => d.querySelector('.nm').value || T('unnamed');

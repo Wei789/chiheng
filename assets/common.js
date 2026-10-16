@@ -21,7 +21,8 @@ const I18N = {
     deletedMsg:'已刪除「{n}」。', undoBtn:'復原', rowDeleted:'已刪除「{n}」這一列。', delRow:'刪除', delRowAria:'刪除這列：{n}',
     errNumber:'請輸入數字。', errRange:'請輸入 {min} 到 {max} 之間的數字。', errReturns:'有 {n} 格不是數字，已用紅框標出，請修正後再執行。',
     errNoValue:'請至少輸入一筆大於 0 的目前市值。', cookieUnavailable:'目前無法開啟 Cookie 設定：你所在的地區可能不需要同意訊息，或廣告服務被瀏覽器擋下。你可以在瀏覽器設定中清除本站 Cookie。', adLabel:'廣告',
-    storageNote:'資料只存在你這台裝置的瀏覽器，不會上傳。'
+    storageNote:'資料只存在你這台裝置的瀏覽器，不會上傳。',
+    scrollHint:'表格較寬，可左右滑動查看其他欄 →'
   },
   'en': {
     yearLabel:'Year {i}',
@@ -38,7 +39,8 @@ const I18N = {
     deletedMsg:'Deleted "{n}".', undoBtn:'Undo', rowDeleted:'Deleted row "{n}".', delRow:'Delete', delRowAria:'Delete row: {n}',
     errNumber:'Please enter a number.', errRange:'Please enter a number from {min} to {max}.', errReturns:'{n} cells are not numbers (outlined in red). Please fix them and run again.',
     errNoValue:'Please enter at least one current value above 0.', cookieUnavailable:'Cookie settings are not available right now: your region may not require a consent message, or ad services are blocked by your browser. You can clear this site\'s cookies in your browser settings.', adLabel:'Advertisement',
-    storageNote:'Data stays only in this device\'s browser; nothing is uploaded.'
+    storageNote:'Data stays only in this device\'s browser; nothing is uploaded.',
+    scrollHint:'This table is wide: scroll sideways to see more columns →'
   },
   'zh-CN': {
     yearLabel:'第 {i} 年',
@@ -55,7 +57,8 @@ const I18N = {
     deletedMsg:'已删除「{n}」。', undoBtn:'复原', rowDeleted:'已删除「{n}」这一行。', delRow:'删除', delRowAria:'删除这一行：{n}',
     errNumber:'请输入数字。', errRange:'请输入 {min} 到 {max} 之间的数字。', errReturns:'有 {n} 格不是数字，已用红框标出，请修正后再执行。',
     errNoValue:'请至少输入一笔大于 0 的当前市值。', cookieUnavailable:'目前无法打开 Cookie 设置：你所在的地区可能不需要同意消息，或广告服务被浏览器拦截。你可以在浏览器设置中清除本站 Cookie。', adLabel:'广告',
-    storageNote:'数据只存在你这台设备的浏览器，不会上传。'
+    storageNote:'数据只存在你这台设备的浏览器，不会上传。',
+    scrollHint:'表格较宽，可左右滑动查看其他栏 →'
   },
   'ja': {
     yearLabel:'{i}年目',
@@ -72,7 +75,8 @@ const I18N = {
     deletedMsg:'「{n}」を削除しました。', undoBtn:'元に戻す', rowDeleted:'「{n}」の行を削除しました。', delRow:'削除', delRowAria:'この行を削除：{n}',
     errNumber:'数字を入力してください。', errRange:'{min}〜{max} の数字を入力してください。', errReturns:'数字でないマスが {n} 個あります（赤枠）。修正してから実行してください。',
     errNoValue:'現在の評価額を 1 件以上（0 より大きく）入力してください。', cookieUnavailable:'現在 Cookie 設定を開けません：お住まいの地域では同意メッセージが不要か、広告サービスがブラウザにブロックされています。ブラウザ設定で本サイトの Cookie を削除できます。', adLabel:'広告',
-    storageNote:'データはこの端末のブラウザにのみ保存され、アップロードされません。'
+    storageNote:'データはこの端末のブラウザにのみ保存され、アップロードされません。',
+    scrollHint:'表は横にスクロールすると他の列が見られます →'
   }
 };
 const pageLang = () => window.LANG || ({en:'en', ja:'ja', 'zh-Hans':'zh-CN', 'zh-CN':'zh-CN'}[document.documentElement.lang]) || 'zh-TW';
@@ -201,6 +205,30 @@ function buildStorageUI(kind, gather, apply){
   nameEl.addEventListener('keydown', e => { if (e.key === 'Enter') save(); });
   render();
 }
+
+/* ===== 寬表格捲動提示 =====
+   表格放不下時（手機或內容變寬，例如執行 GK 後）才顯示「可左右滑動」提示，並讓區塊可用鍵盤聚焦捲動；
+   捲離最左邊時加上 .scrolled，讓固定的第一欄出現分隔陰影。 */
+(function initScrollTables(){
+  document.querySelectorAll('.tblwrap').forEach(w => {
+    const table = w.querySelector('table');
+    if (!table) return;
+    const hint = document.createElement('p');
+    hint.className = 'scroll-hint'; hint.hidden = true; hint.setAttribute('aria-hidden', 'true');
+    hint.textContent = T('scrollHint');
+    w.insertAdjacentElement('beforebegin', hint);
+    const update = () => {
+      const scrollable = w.scrollWidth > w.clientWidth + 1;
+      hint.hidden = !scrollable;
+      if (scrollable) { w.tabIndex = 0; w.setAttribute('role', 'region'); w.setAttribute('aria-label', T('scrollHint')); }
+      else { w.removeAttribute('tabindex'); w.removeAttribute('role'); w.removeAttribute('aria-label'); }
+      w.classList.toggle('scrolled', w.scrollLeft > 0);
+    };
+    w.addEventListener('scroll', () => w.classList.toggle('scrolled', w.scrollLeft > 0), {passive: true});
+    if (window.ResizeObserver) { const ro = new ResizeObserver(update); ro.observe(w); ro.observe(table); }
+    update();
+  });
+})();
 
 /* ===== 廣告版位（規範第 8 節）=====
    只使用「手動」多媒體廣告單元；AdSense 後台的「自動廣告」（含插頁／Vignette、錨定）必須保持關閉，見 docs/ADSENSE_SETUP.md。
