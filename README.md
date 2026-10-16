@@ -14,9 +14,20 @@ app/                        WealthPoise 下載導流頁
 about/  contact/  privacy/  關於我們、聯絡方式、隱私權政策
 en/  zh-cn/  ja/            其他語言（noindex,follow，不列入 sitemap）
 assets/                     style.css / common.js / gk.js / rebalance.js
-docs/                       ADSENSE_SETUP.md（AdSense 後台步驟）、PLACEHOLDERS.md（待補資料）
+docs/                       ADSENSE_SETUP.md（AdSense 後台步驟）、PLACEHOLDERS.md（待補資料）、UX_AUDIT.md（體驗規範稽核）
 sitemap.xml  robots.txt  ads.txt
+_redirects                  Cloudflare Pages 轉址：/docs/*、/README.md 等內部檔案 302 導回首頁
 ```
+
+## 內部文件不公開
+
+網站根目錄就是 repo 根目錄，所以 `docs/`、`README.md` 原本會被公開存取。根目錄的 `_redirects`（Cloudflare Pages 專用，檔案本身不會被提供下載）把下列路徑 302 導回首頁：
+
+```
+/docs  /docs/*  /README.md  /.gitignore
+```
+
+新增其他內部檔案時，放進 `docs/` 即自動套用；放在別處就要在 `_redirects` 加一行。注意：本機用 `python3 -m http.server` 預覽時不會套用此規則。
 
 ## 本機預覽
 
@@ -38,7 +49,8 @@ python3 -m http.server 8765
 
 ## 廣告與 Cookie 同意
 
-- 廣告版位總開關：`assets/common.js` 的 `ADS_ENABLED`（預設 `false`）與 `AD_SLOTS`。
+- 廣告版位總開關：`assets/common.js` 的 `ADS_ENABLED`（預設 `false`）與 `AD_SLOTS`。只用手動頁內版位；AdSense「自動廣告」（含插頁／Vignette、錨定）必須保持關閉。
+- 介面須符合團隊《簡單體驗設計規範》（字級 rem、對比 ≥ 7:1 含深色模式、點擊區 ≥ 48px、廣告規則），稽核結果見 `docs/UX_AUDIT.md`。
 - Cookie 同意使用 AdSense 內建的 Google「隱私權與訊息」CMP，頁尾「Cookie 設定」可重新開啟。
 - 後台設定步驟見 `docs/ADSENSE_SETUP.md`；待補的營運者資料見 `docs/PLACEHOLDERS.md`。
 
