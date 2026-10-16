@@ -10,7 +10,7 @@ const scenarioGen = {
   zero:   y => Array.from({length:y}, () => 0)
 };
 
-const getYears = () => Math.max(1, Math.min(40, Math.round(num('g_yr')) || 1));
+const getYears = () => Math.max(1, Math.min(40, Math.round(parseNum(document.getElementById('g_yr').value)) || 1));
 
 /* 重建各年報酬率格子；preserve=true 時保留既有輸入值 */
 function renderReturns(preserve) {
@@ -22,7 +22,7 @@ function renderReturns(preserve) {
     const cell = document.createElement('div');
     cell.className = 'return-cell';
     const v = old[i-1] !== undefined ? old[i-1] : 6;
-    cell.innerHTML = `<label>${T('yearLabel').replace('{i}', i)}</label><input type="number" step="0.1" value="${v}">`;
+    cell.innerHTML = `<label for="g_r${i}">${T('yearLabel').replace('{i}', i)}</label><input id="g_r${i}" inputmode="decimal" autocomplete="off" value="${esc(v)}">`;
     grid.appendChild(cell);
   }
   colorReturns();
@@ -30,7 +30,7 @@ function renderReturns(preserve) {
 
 function colorReturns() {
   document.querySelectorAll('#g_returns input').forEach(inp => {
-    const upd = () => inp.classList.toggle('neg', parseFloat(inp.value) < 0);
+    const upd = () => inp.classList.toggle('neg', parseNum(inp.value) < 0);
     upd();
     inp.addEventListener('input', upd);
   });
@@ -80,31 +80,79 @@ function realizedCAGR() {
   return (Math.pow(product, 1/rets.length) - 1) * 100;
 }
 
-/* 情境按鈕 */
+/* 情境按鈕（aria-pressed 標示目前選取，不只靠顏色） */
+const clearScenario = () => document.querySelectorAll('#g_scen .chip').forEach(x => x.setAttribute('aria-pressed', 'false'));
 document.querySelectorAll('#g_scen .chip').forEach(c => c.addEventListener('click', () => {
-  document.querySelectorAll('#g_scen .chip').forEach(x => x.style.cssText = '');
-  c.style.cssText = 'border-color:var(--pine);color:var(--pine);background:rgba(31,74,60,.07)';
+  clearScenario();
+  c.setAttribute('aria-pressed', 'true');
   applyScenario(c.dataset.s);
+  showReturnsError(0);
   document.getElementById('g_realized').textContent = '';
 }));
 
+/* 各年報酬格：非數字的格子標紅框，並在格子下方顯示一則說明 */
+function showReturnsError(n){
+  const grid = document.getElementById('g_returns');
+  let el = document.getElementById('g_returns_err');
+  if (!el) {
+    el = document.createElement('div');
+    el.className = 'field-error'; el.id = 'g_returns_err'; el.setAttribute('role', 'alert');
+    grid.insertAdjacentElement('afterend', el);
+  }
+  el.hidden = !n;
+  el.textContent = n ? tr('errReturns', {n}) : '';
+}
+function validReturns(){
+  let bad = 0;
+  document.querySelectorAll('#g_returns input').forEach(inp => {
+    const v = parseNum(inp.value);
+    const ok = !Number.isNaN(v) && v >= -100;
+    if (ok) inp.removeAttribute('aria-invalid'); else { inp.setAttribute('aria-invalid', 'true'); bad++; }
+  });
+  showReturnsError(bad);
+  return bad === 0;
+}
+
 /* 隨機年化情境 */
 document.getElementById('g_gen').addEventListener('click', () => {
-  const target = num('g_cagr');
+  const target = checkNumber(document.getElementById('g_cagr'), -50, 50);
+  const yrsOk = checkNumber(document.getElementById('g_yr'), 1, 40);
+  if (target === null || yrsOk === null) { setAdsSuppressed(true); return; }
   fillReturns(randomReturnsForCAGR(target, getYears()));
-  document.querySelectorAll('#g_scen .chip').forEach(x => x.style.cssText = '');
+  clearScenario();
+  showReturnsError(0);
   document.getElementById('g_realized').innerHTML =
     T('randomDone').replace('{n}', getYears()).replace('{r}', realizedCAGR().toFixed(2)).replace('{t}', target);
 });
 
 /* 年數改變時重建格子並保留值 */
-document.getElementById('g_yr').addEventListener('change', () => renderReturns(true));
+document.getElementById('g_yr').addEventListener('change', () => {
+  if (checkNumber(document.getElementById('g_yr'), 1, 40) !== null) renderReturns(true);
+});
 
 /* 執行模擬 */
+/* 各欄位合理範圍；不合格時就地提示，不清空輸入、不執行 */
+const GK_RULES = {g_p:[1, 1e12], g_yr:[1, 40], g_wr:[0.1, 100], g_inf:[-20, 50], g_cprT:[1, 5], g_cprC:[0, 100], g_prT:[0, 1], g_prR:[0, 100]};
 document.getElementById('g_run').addEventListener('click', () => {
-  const p = num('g_p'), wr = num('g_wr')/100, inf = num('g_inf')/100;
-  const cprT = num('g_cprT'), cprC = num('g_cprC')/100, prT = num('g_prT'), prR = num('g_prR')/100;
-  const rets = [...document.querySelectorAll('#g_returns input')].map(i => (parseFloat(i.value)||0)/100);
+  const val = {};
+  let ok = true, firstBad = null;
+  Object.keys(GK_RULES).forEach(id => {
+    const el = document.getElementById(id);
+    val[id] = checkNumber(el, ...GK_RULES[id]);
+    if (val[id] === null) { ok = false; firstBad = firstBad || el; }
+  });
+  if (ok && Math.round(val.g_yr) !== document.querySelectorAll('#g_returns input').length) renderReturns(true);
+  if (!validReturns()) { ok = false; firstBad = firstBad || document.querySelector('#g_returns [aria-invalid]'); }
+  if (!ok) {
+    const d = firstBad && firstBad.closest('details'); if (d) d.open = true;
+    if (firstBad) firstBad.focus();
+    setAdsSuppressed(true);
+    return;
+  }
+  setAdsSuppressed(false);
+  const p = val.g_p, wr = val.g_wr/100, inf = val.g_inf/100;
+  const cprT = val.g_cprT, cprC = val.g_cprC/100, prT = val.g_prT, prR = val.g_prR/100;
+  const rets = [...document.querySelectorAll('#g_returns input')].map(i => parseNum(i.value)/100);
   const years = rets.length;
 
   let bal = p, prevW = p*wr, prevRet = null, triggers = 0, totalW = 0, sumWR = 0, rows = '', done = 0;
@@ -149,7 +197,7 @@ function applyGK(o){
   if (!o) return;
   GK_IDS.forEach(id => { if (o[id] !== undefined) document.getElementById(id).value = o[id]; });
   if (o.returns) fillReturns(o.returns.map(Number));
-  document.querySelectorAll('#g_scen .chip').forEach(x => x.style.cssText = '');
+  clearScenario();
   document.getElementById('g_realized').textContent = '';
 }
 
