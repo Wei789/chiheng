@@ -51,6 +51,9 @@ nav{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:8px;paddi
 .langsw a{font-size:1rem;min-width:48px;min-height:48px;display:inline-flex;align-items:center;justify-content:center;padding:0 8px;border-radius:6px;color:var(--ink-soft);white-space:nowrap}
 .langsw a:hover{color:var(--pine);text-decoration:underline}
 .langsw a.on{color:var(--pine);font-weight:700}
+/* 選單：桌機為同一列；手機（≤760px）改由「選單」按鈕展開直排清單（見下方 media 與 assets/nav.js） */
+.menu{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.menu-btn{display:none}
 /* layout */
 main{max-width:1080px;margin:0 auto;padding:0 22px}
 section{padding:46px 0;animation:fade .3s ease}
@@ -174,13 +177,23 @@ footer .fl a:hover{color:var(--pine);text-decoration:underline}
 @media(max-width:760px){
   header{position:static}
   nav{padding:8px 16px;gap:4px}
+  /* 手機選單：沒有 JS（無 .js）時直接直排顯示；有 JS 時收進「選單」按鈕 */
+  .menu{flex-basis:100%;flex-direction:column;align-items:stretch;gap:4px;padding:4px 0 8px}
+  .js .menu-btn{display:inline-flex;align-items:center;gap:8px;min-height:48px;min-width:48px;padding:0 16px;border:1px solid var(--ink-soft);border-radius:9px;background:var(--input-bg);color:var(--ink);font-family:var(--sans);font-size:1.0625rem;cursor:pointer}
+  .menu-btn .i-close,.menu-btn[aria-expanded="true"] .i-open{display:none}
+  .menu-btn[aria-expanded="true"] .i-close{display:block}
+  .js .menu{display:none}
+  .js .menu.open{display:flex;max-height:calc(100vh - 5rem);overflow-y:auto}
+  .menu .navlink{border-radius:9px;padding:0 14px}
+  .langsw{margin:4px 0 0;padding:8px 0 0;border-left:none;border-top:1px solid var(--line);flex-wrap:wrap;gap:8px}
+  footer{text-align:left}
+  footer .fl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 12px;max-width:26rem}
+  footer .fl a{justify-content:flex-start;padding:0 4px}
   main{padding:0 16px}
   .grid2,.app-hero,.tools-grid,.feat{grid-template-columns:1fr}
   .holding-row{grid-template-columns:1fr 1fr;gap:6px}
   .holding-row input.nm{grid-column:1 / -1}
   .brand{font-size:1.125rem}
-  .navlink{padding:0 10px}
-  .langsw{margin-left:0}
 }
 /* GK：各年報酬率編輯格 */
 .returns-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(6rem,1fr));gap:8px;margin-top:6px}
