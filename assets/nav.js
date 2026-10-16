@@ -14,3 +14,11 @@
   /* 點選單外面收起 */
   document.addEventListener('click', e => { if (isOpen() && !e.target.closest('header nav')) set(false); });
 })();
+
+/* 聯絡信箱：HTML 只放 data-user／data-domain，載入後才組成 mailto 連結，降低被爬蟲收集的機會。
+   沒有 JS 時由旁邊的 <noscript> 顯示「user [at] domain」。 */
+document.querySelectorAll('a.email-link[data-user][data-domain]').forEach(a => {
+  const addr = a.dataset.user + '@' + a.dataset.domain;
+  a.href = 'mailto:' + addr;
+  a.textContent = addr;
+});
