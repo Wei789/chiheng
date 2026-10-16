@@ -6,7 +6,7 @@
   --pine:#1f4a3c; --pine-d:#163a2f; --gold:#5f430b; --gold-l:#c79a3e;
   --line:#c9bca3; --buy:#155238; --sell:#7e2a22; --shadow:rgba(42,36,27,.10);
   --input-bg:#fff; --on-accent:#f3ede1; --header-bg:rgba(243,237,225,.92); --focus:#1f4a3c;
-  --tint-gold:rgba(169,121,31,.07); --tint-pine:rgba(31,74,60,.07); --hero-mark:rgba(31,74,60,.05);
+  --tint-gold:rgba(169,121,31,.07); --tint-pine:rgba(31,74,60,.07);
   --chip-sell:#f5e3df; --chip-buy:#dfeee5; --chip-gold:#eee7d4;
   --serif:"Noto Serif TC","Newsreader",serif; --sans:"Noto Sans TC",system-ui,sans-serif;
   --mono:"IBM Plex Mono",monospace;
@@ -17,7 +17,7 @@
     --pine:#9ad3bb; --pine-d:#b5e2cf; --gold:#e2bf6e; --gold-l:#a8833a;
     --line:#4a4337; --buy:#8fd4af; --sell:#f0a59a; --shadow:rgba(0,0,0,.4);
     --input-bg:#1a1814; --on-accent:#15130f; --header-bg:rgba(21,19,15,.94); --focus:#9ad3bb;
-    --tint-gold:rgba(226,191,110,.10); --tint-pine:rgba(154,211,187,.12); --hero-mark:rgba(154,211,187,.06);
+    --tint-gold:rgba(226,191,110,.10); --tint-pine:rgba(154,211,187,.12);
     --chip-sell:#3a211d; --chip-buy:#1c3328; --chip-gold:#2e2818;
   }
 }
@@ -62,9 +62,7 @@ h2{font-family:var(--serif);font-weight:600;font-size:1.625rem;line-height:1.35;
 .lead{font-size:1.1875rem;color:var(--ink-soft);max-width:52ch;margin-top:18px}
 .hint{font-size:1rem;color:var(--ink-soft);line-height:1.5}
 /* hero */
-.hero{padding-top:64px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
-.hero:after{content:"持衡";position:absolute;z-index:-1;right:0;bottom:-6px;font-family:var(--serif);font-size:10.625rem;color:var(--hero-mark);font-weight:700;pointer-events:none;line-height:1}
-.hero:after{content:"持衡" / ""}
+.hero{padding-top:64px;border-bottom:1px solid var(--line)}
 .tools-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:40px}
 .tool-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative;overflow:hidden;display:block}
 .tool-card:hover{transform:translateY(-4px);box-shadow:0 16px 36px -18px var(--shadow);border-color:var(--gold-l)}
@@ -180,7 +178,6 @@ footer .fl a:hover{color:var(--pine);text-decoration:underline}
   .grid2,.app-hero,.tools-grid,.feat{grid-template-columns:1fr}
   .holding-row{grid-template-columns:1fr 1fr;gap:6px}
   .holding-row input.nm{grid-column:1 / -1}
-  .hero:after{font-size:5.625rem}
   .brand{font-size:1.125rem}
   .navlink{padding:0 10px}
   .langsw{margin-left:0}
