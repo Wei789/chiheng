@@ -92,9 +92,9 @@ document.getElementById('r_run').addEventListener('click', () => {
     newTotal = total; actions = items.map(i => total*i.tgt/100 - i.val);
   }
   const moved = actions.reduce((a,b) => a + Math.abs(b), 0);
-  document.getElementById('r_total').textContent = f0(total);
-  document.getElementById('r_after').textContent = f0(newTotal);
-  document.getElementById('r_move').textContent = f0(moved);
+  setBigNum('r_total', total);
+  setBigNum('r_after', newTotal);
+  setBigNum('r_move', moved);
   document.getElementById('r_body').innerHTML = items.map((i,x) => {
     const a = actions[x], act = Math.abs(a) < 1 ? `<span style="color:var(--ink-soft)">${T('hold')}</span>` : (a > 0 ? `<span class="pos">${T('buy')} ${f0(a)}</span>` : `<span class="neg">${T('sell')} ${f0(-a)}</span>`);
     return `<tr><td>${esc(i.name)}</td><td>${f0(i.val)}</td><td>${(i.val/total*100).toFixed(1)}%</td><td>${i.tgt}%</td><td style="text-align:left">${act}</td></tr>`;

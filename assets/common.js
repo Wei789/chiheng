@@ -1,5 +1,7 @@
 /* 共用工具函式 + JS 產生字串的多語字典 */
 const f0 = n => Math.round(n).toLocaleString('en-US');
+/* 結果摘要的大數字：只在千分位逗號後換行，窄欄時不會從數字中間斷開（f0 只輸出數字、逗號與負號） */
+const setBigNum = (id, n) => { document.getElementById(id).innerHTML = f0(n).replace(/,/g, ',<wbr>'); };
 const num = id => parseFloat(document.getElementById(id).value) || 0;
 
 /* 語言由各頁設定 window.LANG（'zh-TW' | 'en' | 'zh-CN' | 'ja'），預設繁中 */

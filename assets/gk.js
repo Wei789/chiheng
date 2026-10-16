@@ -178,8 +178,8 @@ document.getElementById('g_run').addEventListener('click', () => {
 
   const avgWR = done ? sumWR/done*100 : 0;
   document.getElementById('g_body').innerHTML = rows;
-  document.getElementById('g_end').textContent = f0(bal);
-  document.getElementById('g_tot').textContent = f0(totalW);
+  setBigNum('g_end', bal);
+  setBigNum('g_tot', totalW);
   document.getElementById('g_avgwr').textContent = avgWR.toFixed(2)+'%';
   document.getElementById('g_avgw').textContent = T('avgWithdrawPrefix')+f0(done?totalW/done:0);
   document.getElementById('g_tri').textContent = triggers+' '+T('yearsUnit');
