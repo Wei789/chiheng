@@ -108,22 +108,22 @@
   <section>
     <div class="tool-head">
       <div class="eyebrow">Portfolio Rebalancing</div>
-      <h1 style="font-size:clamp(28px,5vw,42px)">資產 <em>再平衡</em> 計算機</h1>
+      <h1 style="font-size:clamp(1.75rem,1.2rem + 2.8vw,2.625rem)">資產 <em>再平衡</em> 計算機</h1>
     </div>
     <div class="grid2">
       <div>
         <div class="panel">
           <h4><span class="no">1</span>你的持有與目標</h4>
           <div class="seg">
-            <button id="m_new" class="on">投入新資金</button>
-            <button id="m_full">完全重配</button>
+            <button type="button" id="m_new" class="on" aria-pressed="true">投入新資金</button>
+            <button type="button" id="m_full" aria-pressed="false">完全重配</button>
           </div>
-          <div class="field" id="cashWrap"><label>投入新資金（元）</label><input id="r_cash" class="num" value="300000"></div>
-          <div style="font-size:11.5px;color:var(--ink-soft);margin:2px 0 10px">名稱 · 目前市值 · 目標%</div>
+          <div class="field" id="cashWrap"><label for="r_cash">投入新資金（元）</label><input id="r_cash" class="num" inputmode="decimal" autocomplete="off" value="300000"></div>
+          <p class="hint" style="margin:2px 0 10px">名稱 · 目前市值 · 目標%</p>
           <div id="r_rows"></div>
-          <button class="btn ghost btn-sm" id="r_add" style="margin-top:4px">＋ 新增標的</button>
-          <div id="r_warn" style="font-size:12px;color:var(--sell);margin-top:10px;display:none"></div>
-          <button class="btn" id="r_run" style="margin-top:14px">計算再平衡 →</button>
+          <button type="button" class="btn ghost btn-sm" id="r_add" style="margin-top:4px">＋ 新增標的</button>
+          <div id="r_warn" class="field-error" role="alert" hidden></div>
+          <button type="button" class="btn" id="r_run" style="margin-top:14px">計算再平衡 →</button>
         </div>
       </div>
       <div>
@@ -142,10 +142,10 @@
             <tbody id="r_body"><tr><td colspan="5"><div class="placeholder">輸入持有與目標後計算。</div></td></tr></tbody>
           </table>
         </div>
-        <div class="disclaimer">想要自動追蹤、多幣別與 iCloud 同步？這是 WealthPoise App 的核心功能。<a href="/app/" style="color:var(--pine);text-decoration:underline">前往 App 介紹 →</a></div>
-        <div class="ad-slot" data-ad-key="tool" hidden><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1805145736120420" data-ad-slot="" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+        <div class="disclaimer">想要自動追蹤、多幣別與 iCloud 同步？這是 WealthPoise App 的核心功能。<a href="/app/">看 App 介紹 →</a></div>
       </div>
     </div>
+    <div class="ad-slot" data-ad-key="tool" hidden><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1805145736120420" data-ad-slot=""></ins></div>
   </section>
 
   <section style="padding-top:0">

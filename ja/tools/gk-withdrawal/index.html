@@ -54,28 +54,28 @@
   <section>
     <div class="tool-head">
       <div class="eyebrow">Guyton-Klinger Rules</div>
-      <h1 style="font-size:clamp(28px,5vw,42px)">GK <em>動的引き出し</em> シミュレーター</h1>
+      <h1 style="font-size:clamp(1.75rem,1.2rem + 2.8vw,2.625rem)">GK <em>動的引き出し</em> シミュレーター</h1>
     </div>
 
     <div class="panel" style="margin-bottom:16px">
       <h4><span class="no">1</span>元本と基準</h4>
       <div class="row2">
-        <div class="field"><label>初期元本</label><input id="g_p" class="num" value="10000000"></div>
-        <div class="field"><label>シミュレーション年数</label><input id="g_yr" class="num" value="30"></div>
+        <div class="field"><label for="g_p">初期元本</label><input id="g_p" class="num" inputmode="decimal" autocomplete="off" value="10000000"></div>
+        <div class="field"><label for="g_yr">シミュレーション年数</label><input id="g_yr" class="num" inputmode="decimal" autocomplete="off" value="30"></div>
       </div>
       <div class="row2">
-        <div class="field"><label>初期引き出し率 %</label><input id="g_wr" class="num" value="4"></div>
-        <div class="field"><label>年間インフレ率 %</label><input id="g_inf" class="num" value="2.5"></div>
+        <div class="field"><label for="g_wr">初期引き出し率 %</label><input id="g_wr" class="num" inputmode="decimal" autocomplete="off" value="4"></div>
+        <div class="field"><label for="g_inf">年間インフレ率 %</label><input id="g_inf" class="num" inputmode="decimal" autocomplete="off" value="2.5"></div>
       </div>
       <details>
         <summary>詳細ルール設定</summary>
         <div class="row2">
-          <div class="field"><label>CPR 発動倍率 ×</label><input id="g_cprT" class="num" value="1.2"></div>
-          <div class="field"><label>CPR 削減 %</label><input id="g_cprC" class="num" value="10"></div>
+          <div class="field"><label for="g_cprT">CPR 発動倍率 ×</label><input id="g_cprT" class="num" inputmode="decimal" autocomplete="off" value="1.2"></div>
+          <div class="field"><label for="g_cprC">CPR 削減 %</label><input id="g_cprC" class="num" inputmode="decimal" autocomplete="off" value="10"></div>
         </div>
         <div class="row2">
-          <div class="field"><label>PR 発動倍率 ×</label><input id="g_prT" class="num" value="0.8"></div>
-          <div class="field"><label>PR 増額 %</label><input id="g_prR" class="num" value="10"></div>
+          <div class="field"><label for="g_prT">PR 発動倍率 ×</label><input id="g_prT" class="num" inputmode="decimal" autocomplete="off" value="0.8"></div>
+          <div class="field"><label for="g_prR">PR 増額 %</label><input id="g_prR" class="num" inputmode="decimal" autocomplete="off" value="10"></div>
         </div>
       </details>
     </div>
@@ -83,22 +83,22 @@
     <div class="panel" style="margin-bottom:16px">
       <h4><span class="no">2</span>各年の市場リターン</h4>
       <div class="chips" id="g_scen">
-        <span class="chip" data-s="bull">強気→弱気</span>
-        <span class="chip" data-s="lost">失われた10年</span>
-        <span class="chip" data-s="crash">退職初年に暴落</span>
-        <span class="chip" data-s="steady">安定成長</span>
-        <span class="chip" data-s="zero">全てゼロ</span>
+        <button type="button" class="chip" data-s="bull" aria-pressed="false">強気→弱気</button>
+        <button type="button" class="chip" data-s="lost" aria-pressed="false">失われた10年</button>
+        <button type="button" class="chip" data-s="crash" aria-pressed="false">退職初年に暴落</button>
+        <button type="button" class="chip" data-s="steady" aria-pressed="false">安定成長</button>
+        <button type="button" class="chip" data-s="zero" aria-pressed="false">全てゼロ</button>
       </div>
       <div class="cagr-row">
-        <div class="cagr-field"><label>年率リターン指定 %</label><input id="g_cagr" class="num" value="7"></div>
-        <button class="btn ghost btn-sm" id="g_gen">各年リターンをランダム生成 →</button>
+        <div class="cagr-field"><label for="g_cagr">年率リターン指定 %</label><input id="g_cagr" class="num" inputmode="decimal" autocomplete="off" value="7"></div>
+        <button type="button" class="btn ghost btn-sm" id="g_gen">各年リターンをランダム生成 →</button>
       </div>
       <div class="realized" id="g_realized"></div>
-      <div style="font-size:11.5px;color:var(--ink-soft);margin:14px 0 6px">各年は手動で微調整できます（マイナスは赤表示）：</div>
+      <p class="hint" style="margin:14px 0 6px">各年は手動で微調整できます（マイナスは赤表示）：</p>
       <div class="returns-grid" id="g_returns"></div>
     </div>
 
-    <button class="btn" id="g_run" style="margin-bottom:24px">シミュレーション実行 →</button>
+    <button type="button" class="btn" id="g_run" style="margin-bottom:24px">シミュレーション実行 →</button>
 
     <div class="summary s4">
       <div class="stat"><div class="k">期末元本</div><div class="v" id="g_end">—</div></div>

@@ -108,28 +108,28 @@
   <section>
     <div class="tool-head">
       <div class="eyebrow">Guyton-Klinger Rules</div>
-      <h1 style="font-size:clamp(28px,5vw,42px)">GK <em>動態提領</em> 模擬器</h1>
+      <h1 style="font-size:clamp(1.75rem,1.2rem + 2.8vw,2.625rem)">GK <em>動態提領</em> 模擬器</h1>
     </div>
 
     <div class="panel" style="margin-bottom:16px">
       <h4><span class="no">1</span>本金與基準</h4>
       <div class="row2">
-        <div class="field"><label>初始本金（元）</label><input id="g_p" class="num" value="10000000"></div>
-        <div class="field"><label>模擬年數</label><input id="g_yr" class="num" value="30"></div>
+        <div class="field"><label for="g_p">初始本金（元）</label><input id="g_p" class="num" inputmode="decimal" autocomplete="off" value="10000000"></div>
+        <div class="field"><label for="g_yr">模擬年數</label><input id="g_yr" class="num" inputmode="decimal" autocomplete="off" value="30"></div>
       </div>
       <div class="row2">
-        <div class="field"><label>初始提領率 %</label><input id="g_wr" class="num" value="4"></div>
-        <div class="field"><label>年通膨率 %</label><input id="g_inf" class="num" value="2.5"></div>
+        <div class="field"><label for="g_wr">初始提領率 %</label><input id="g_wr" class="num" inputmode="decimal" autocomplete="off" value="4"></div>
+        <div class="field"><label for="g_inf">年通膨率 %</label><input id="g_inf" class="num" inputmode="decimal" autocomplete="off" value="2.5"></div>
       </div>
       <details>
         <summary>進階規則參數</summary>
         <div class="row2">
-          <div class="field"><label>CPR 觸發倍率 ×</label><input id="g_cprT" class="num" value="1.2"></div>
-          <div class="field"><label>CPR 削減 %</label><input id="g_cprC" class="num" value="10"></div>
+          <div class="field"><label for="g_cprT">CPR 觸發倍率 ×</label><input id="g_cprT" class="num" inputmode="decimal" autocomplete="off" value="1.2"></div>
+          <div class="field"><label for="g_cprC">CPR 削減 %</label><input id="g_cprC" class="num" inputmode="decimal" autocomplete="off" value="10"></div>
         </div>
         <div class="row2">
-          <div class="field"><label>PR 觸發倍率 ×</label><input id="g_prT" class="num" value="0.8"></div>
-          <div class="field"><label>PR 增加 %</label><input id="g_prR" class="num" value="10"></div>
+          <div class="field"><label for="g_prT">PR 觸發倍率 ×</label><input id="g_prT" class="num" inputmode="decimal" autocomplete="off" value="0.8"></div>
+          <div class="field"><label for="g_prR">PR 增加 %</label><input id="g_prR" class="num" inputmode="decimal" autocomplete="off" value="10"></div>
         </div>
       </details>
     </div>
@@ -137,22 +137,22 @@
     <div class="panel" style="margin-bottom:16px">
       <h4><span class="no">2</span>各年市場報酬率</h4>
       <div class="chips" id="g_scen">
-        <span class="chip" data-s="bull">先牛後熊</span>
-        <span class="chip" data-s="lost">失落十年</span>
-        <span class="chip" data-s="crash">退休首年崩盤</span>
-        <span class="chip" data-s="steady">穩健成長</span>
-        <span class="chip" data-s="zero">全部歸零</span>
+        <button type="button" class="chip" data-s="bull" aria-pressed="false">先牛後熊</button>
+        <button type="button" class="chip" data-s="lost" aria-pressed="false">失落十年</button>
+        <button type="button" class="chip" data-s="crash" aria-pressed="false">退休首年崩盤</button>
+        <button type="button" class="chip" data-s="steady" aria-pressed="false">穩健成長</button>
+        <button type="button" class="chip" data-s="zero" aria-pressed="false">全部歸零</button>
       </div>
       <div class="cagr-row">
-        <div class="cagr-field"><label>自訂年化報酬 %</label><input id="g_cagr" class="num" value="7"></div>
-        <button class="btn ghost btn-sm" id="g_gen">隨機產生各年報酬 →</button>
+        <div class="cagr-field"><label for="g_cagr">自訂年化報酬 %</label><input id="g_cagr" class="num" inputmode="decimal" autocomplete="off" value="7"></div>
+        <button type="button" class="btn ghost btn-sm" id="g_gen">隨機產生各年報酬 →</button>
       </div>
       <div class="realized" id="g_realized"></div>
-      <div style="font-size:11.5px;color:var(--ink-soft);margin:14px 0 6px">每一年都可手動微調（負值會標紅）：</div>
+      <p class="hint" style="margin:14px 0 6px">每一年都可手動微調（負值會以紅色粗體顯示）：</p>
       <div class="returns-grid" id="g_returns"></div>
     </div>
 
-    <button class="btn" id="g_run" style="margin-bottom:24px">執行模擬 →</button>
+    <button type="button" class="btn" id="g_run" style="margin-bottom:24px">執行模擬 →</button>
 
     <div class="summary s4">
       <div class="stat"><div class="k">期末本金</div><div class="v" id="g_end">—</div></div>
@@ -167,7 +167,7 @@
       </table>
     </div>
     <div class="disclaimer">本工具為教學與情境探索用途，並非投資建議。GK 法則由 Jonathan Guyton 與 William Klinger 提出。</div>
-    <div class="ad-slot" data-ad-key="tool" hidden><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1805145736120420" data-ad-slot="" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+    <div class="ad-slot" data-ad-key="tool" hidden><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1805145736120420" data-ad-slot=""></ins></div>
   </section>
 
   <section style="padding-top:0">
