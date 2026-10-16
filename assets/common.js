@@ -4,11 +4,12 @@ const f0 = n => Math.round(n).toLocaleString('en-US');
 const setBigNum = (id, n) => { document.getElementById(id).innerHTML = f0(n).replace(/,/g, ',<wbr>'); };
 const num = id => parseFloat(document.getElementById(id).value) || 0;
 
-/* 語言由各頁設定 window.LANG（'zh-TW' | 'en' | 'zh-CN' | 'ja'），預設繁中 */
+/* GK 觸發標籤：中文標籤，英文名稱寫在頁面的圖例與規則說明（en 保留 CPR／PR 縮寫）
+   語言由各頁設定 window.LANG（'zh-TW' | 'en' | 'zh-CN' | 'ja'），預設繁中 */
 const I18N = {
   'zh-TW': {
     yearLabel:'第 {i} 年',
-    freeze:'凍漲', yearsUnit:'年', avgWithdrawPrefix:'平均年提領 ',
+    freeze:'通膨凍結', cpr:'保本調降', pr:'繁榮調升', yearsUnit:'年', avgWithdrawPrefix:'平均年提領 ',
     randomDone:'已隨機產生 {n} 年報酬，實際年化報酬 = <b>{r}%</b>（目標 {t}%）',
     unnamed:'未命名', warnSum:'目標配置總和為 {s}%，請調整為 100%。',
     hold:'維持', buy:'買進', sell:'賣出', allocCurrent:'目前配置', allocTarget:'目標',
@@ -26,7 +27,7 @@ const I18N = {
   },
   'en': {
     yearLabel:'Year {i}',
-    freeze:'Freeze', yearsUnit:'yrs', avgWithdrawPrefix:'Avg/yr ',
+    freeze:'Freeze', cpr:'CPR', pr:'PR', yearsUnit:'yrs', avgWithdrawPrefix:'Avg/yr ',
     randomDone:'Generated {n} years of returns; actual CAGR = <b>{r}%</b> (target {t}%)',
     unnamed:'Unnamed', warnSum:'Target allocation sums to {s}%. Please adjust to 100%.',
     hold:'Hold', buy:'Buy', sell:'Sell', allocCurrent:'Current', allocTarget:'Target',
@@ -44,7 +45,7 @@ const I18N = {
   },
   'zh-CN': {
     yearLabel:'第 {i} 年',
-    freeze:'冻涨', yearsUnit:'年', avgWithdrawPrefix:'平均年提取 ',
+    freeze:'通胀冻结', cpr:'保本调降', pr:'繁荣调升', yearsUnit:'年', avgWithdrawPrefix:'平均年提取 ',
     randomDone:'已随机生成 {n} 年收益，实际年化收益 = <b>{r}%</b>（目标 {t}%）',
     unnamed:'未命名', warnSum:'目标配置总和为 {s}%，请调整为 100%。',
     hold:'维持', buy:'买进', sell:'卖出', allocCurrent:'当前配置', allocTarget:'目标',
@@ -62,7 +63,7 @@ const I18N = {
   },
   'ja': {
     yearLabel:'{i}年目',
-    freeze:'凍結', yearsUnit:'年', avgWithdrawPrefix:'平均年間引出 ',
+    freeze:'凍結', cpr:'資本保全', pr:'繁栄', yearsUnit:'年', avgWithdrawPrefix:'平均年間引出 ',
     randomDone:'{n}年分のリターンを生成しました。実際の年率 = <b>{r}%</b>（目標 {t}%）',
     unnamed:'無名', warnSum:'目標配分の合計が {s}% です。100% に調整してください。',
     hold:'維持', buy:'購入', sell:'売却', allocCurrent:'現在の配分', allocTarget:'目標',

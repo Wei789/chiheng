@@ -73,6 +73,8 @@ h2{font-family:var(--serif);font-weight:600;font-size:1.625rem;line-height:1.35;
 .tool-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative;overflow:hidden;display:block}
 .tool-card:hover{transform:translateY(-4px);box-shadow:0 16px 36px -18px var(--shadow);border-color:var(--gold-l)}
 .tool-card .tag{font-family:var(--mono);font-size:.9375rem;letter-spacing:.12em;color:var(--gold);text-transform:uppercase}
+/* 中文頁：括號裡的英文名稱維持原本大小寫，不轉全大寫 */
+:lang(zh) .eyebrow,:lang(zh) .tool-card .tag{text-transform:none;letter-spacing:.08em}
 .tool-card h3{font-family:var(--serif);font-size:1.4375rem;line-height:1.4;color:var(--pine);margin:10px 0 8px}
 .tool-card p{font-size:1.0625rem;color:var(--ink-soft)}
 .tool-card .arrow{margin-top:18px;font-family:var(--mono);font-size:1rem;color:var(--ink);display:inline-flex;gap:6px;align-items:center}
@@ -148,6 +150,10 @@ td:first-child,th:first-child{text-align:left}
 tbody tr:hover{background:var(--tint-gold)}
 .trig{display:inline-block;font-family:var(--sans);font-size:1rem;padding:2px 8px;border-radius:5px;margin-left:4px}
 .t-cpr{background:var(--chip-sell);color:var(--sell)} .t-pr{background:var(--chip-buy);color:var(--buy)} .t-fz{background:var(--chip-gold);color:var(--gold)}
+.trig-legend{font-size:1.0625rem;color:var(--ink-soft);margin-top:12px;line-height:1.6}
+.trig-legend ul{list-style:none;margin-top:4px}
+.trig-legend li{margin-bottom:6px}
+.trig-legend .trig{margin:0 2px 0 0}
 .pos{color:var(--buy)} .neg{color:var(--sell)}
 .placeholder{padding:40px;text-align:center;color:var(--ink-soft);font-size:1.0625rem;white-space:normal}
 /* allocation bars */

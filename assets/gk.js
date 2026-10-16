@@ -165,8 +165,8 @@ document.getElementById('g_run').addEventListener('click', () => {
     else {
       wInfl = prevW*(1+inf); proposed = wInfl;
       if (prevRet !== null && prevRet < 0 && (proposed/start) > wr) { proposed = prevW; tag.push([T('freeze'),'t-fz']); }
-      if ((proposed/start) > wr*cprT) { proposed = proposed*(1-cprC); tag.push(['CPR','t-cpr']); }
-      else if ((proposed/start) < wr*prT) { proposed = proposed*(1+prR); tag.push(['PR','t-pr']); }
+      if ((proposed/start) > wr*cprT) { proposed = proposed*(1-cprC); tag.push([T('cpr'),'t-cpr']); }
+      else if ((proposed/start) < wr*prT) { proposed = proposed*(1+prR); tag.push([T('pr'),'t-pr']); }
     }
     const finalW = Math.min(proposed, start);     // 提領不超過本金（極端值防呆）
     const rate = finalW/start, end = (start-finalW)*(1+ret);

@@ -6,18 +6,18 @@
 <meta name="robots" content="noindex,follow">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1805145736120420" crossorigin="anonymous"></script>
 <title>GK 動的引き出しシミュレーター · 持衡理財</title>
-<meta name="description" content="Guyton-Klinger ルールで退職後の動的引き出しを年ごとにシミュレート。凍結・資本保全(CPR)・繁栄ルール(PR)と5つの市場シナリオを搭載、すべてブラウザ内で計算。">
+<meta name="description" content="Guyton-Klinger ルールで退職後の動的引き出しを年ごとにシミュレート。凍結・資本保全・繁栄ルールと5つの市場シナリオを搭載、すべてブラウザ内で計算。">
 <link rel="canonical" href="https://chihengfinance.com/ja/tools/gk-withdrawal/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:site_name" content="持衡理財">
 <meta property="og:title" content="GK 動的引き出しシミュレーター · 持衡理財">
-<meta property="og:description" content="Guyton-Klinger 動的引き出しの年次シミュレーション。凍結・CPR・PR ルールと5つの市場シナリオ。">
+<meta property="og:description" content="Guyton-Klinger 動的引き出しの年次シミュレーション。凍結・資本保全・繁栄ルールと5つの市場シナリオ。">
 <meta property="og:url" content="https://chihengfinance.com/ja/tools/gk-withdrawal/">
 <meta property="og:image" content="https://chihengfinance.com/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="GK 動的引き出しシミュレーター · 持衡理財">
-<meta name="twitter:description" content="Guyton-Klinger 動的引き出しの年次シミュレーション。凍結・CPR・PR ルール。">
+<meta name="twitter:description" content="Guyton-Klinger 動的引き出しの年次シミュレーション。凍結・資本保全・繁栄ルール。">
 <meta name="twitter:image" content="https://chihengfinance.com/assets/og.png">
 <script type="application/ld+json">
 {
@@ -75,12 +75,12 @@
       <details>
         <summary>詳細ルール設定</summary>
         <div class="row2">
-          <div class="field"><label for="g_cprT">CPR 発動倍率 ×</label><input id="g_cprT" class="num" inputmode="decimal" autocomplete="off" value="1.2"></div>
-          <div class="field"><label for="g_cprC">CPR 削減 %</label><input id="g_cprC" class="num" inputmode="decimal" autocomplete="off" value="10"></div>
+          <div class="field"><label for="g_cprT">資本保全 発動倍率 ×</label><input id="g_cprT" class="num" inputmode="decimal" autocomplete="off" value="1.2"></div>
+          <div class="field"><label for="g_cprC">資本保全 削減 %</label><input id="g_cprC" class="num" inputmode="decimal" autocomplete="off" value="10"></div>
         </div>
         <div class="row2">
-          <div class="field"><label for="g_prT">PR 発動倍率 ×</label><input id="g_prT" class="num" inputmode="decimal" autocomplete="off" value="0.8"></div>
-          <div class="field"><label for="g_prR">PR 増額 %</label><input id="g_prR" class="num" inputmode="decimal" autocomplete="off" value="10"></div>
+          <div class="field"><label for="g_prT">繁栄 発動倍率 ×</label><input id="g_prT" class="num" inputmode="decimal" autocomplete="off" value="0.8"></div>
+          <div class="field"><label for="g_prR">繁栄 増額 %</label><input id="g_prR" class="num" inputmode="decimal" autocomplete="off" value="10"></div>
         </div>
       </details>
     </div>
@@ -117,6 +117,7 @@
         <tbody id="g_body"><tr><td colspan="8"><div class="placeholder">シナリオを選ぶか年率を指定し、「シミュレーション実行」を押してください。</div></td></tr></tbody>
       </table>
     </div>
+    <div class="trig-legend"><p>「発動」列のラベル：</p><ul><li><span class="trig t-fz">凍結</span>（Inflation rule / freeze）前年が下落し引出率も高いため、今年はインフレ調整なし。</li><li><span class="trig t-cpr">資本保全</span>（Capital Preservation）引出率が高すぎるため減額。</li><li><span class="trig t-pr">繁栄</span>（Prosperity）引出率が低すぎるため増額。</li></ul></div>
     <div class="disclaimer">本ツールは教育・シナリオ探索用途であり、投資助言ではありません。GK ルールは Jonathan Guyton と William Klinger により提唱されました。</div>
   </section>
 
@@ -127,8 +128,8 @@
       <ul>
         <li><b>インフレ調整案</b>：前年の引き出し額 ×（1＋インフレ率）；1年目は元本 × 初期引き出し率。</li>
         <li><b>凍結ルール</b>：前年の市場がマイナス かつ 案の引出率が初期率を上回る場合、インフレ調整をスキップし前年額を維持。</li>
-        <li><b>資本保全（CPR）</b>：引出率が「初期率 × 発動倍率」を超えると、一定割合を削減し元本を保護。</li>
-        <li><b>繁栄ルール（PR）</b>：引出率が「初期率 × 発動倍率」を下回ると、適度に引き出しを増額し成長を享受。</li>
+        <li><b>資本保全（Capital Preservation）</b>：引出率が「初期率 × 発動倍率」を超えると、一定割合を削減し元本を保護。</li>
+        <li><b>繁栄ルール（Prosperity）</b>：引出率が「初期率 × 発動倍率」を下回ると、適度に引き出しを増額し成長を享受。</li>
       </ul>
       <h2>よくある質問</h2>
       <p><b>Q：資金が尽きないことを保証しますか？</b><br>いいえ。入力したシナリオで試算するだけで、実際の市場リターンは予測できません。「異なるシナリオで何が起こるか」を探るツールとお考えください。</p>

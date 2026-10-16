@@ -6,18 +6,18 @@
 <meta name="robots" content="noindex,follow">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1805145736120420" crossorigin="anonymous"></script>
 <title>GK 动态提取模拟器 · 持衡理财</title>
-<meta name="description" content="用 Guyton-Klinger 法则逐年模拟退休动态提取，含冻涨、资本保全(CPR)与繁荣规则(PR)，内置 5 种市场情景，全程浏览器运算。">
+<meta name="description" content="用 Guyton-Klinger 法则逐年模拟退休动态提取，含通胀冻结、保本调降（Capital Preservation）与繁荣调升（Prosperity）规则，内置 5 种市场情景，全程浏览器运算。">
 <link rel="canonical" href="https://chihengfinance.com/zh-cn/tools/gk-withdrawal/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:site_name" content="持衡理财">
 <meta property="og:title" content="GK 动态提取模拟器 · 持衡理财">
-<meta property="og:description" content="Guyton-Klinger 动态提取逐年模拟，含冻涨、CPR、PR 规则与 5 种市场情景。">
+<meta property="og:description" content="Guyton-Klinger 动态提取逐年模拟，含通胀冻结、保本调降、繁荣调升规则与 5 种市场情景。">
 <meta property="og:url" content="https://chihengfinance.com/zh-cn/tools/gk-withdrawal/">
 <meta property="og:image" content="https://chihengfinance.com/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="GK 动态提取模拟器 · 持衡理财">
-<meta name="twitter:description" content="Guyton-Klinger 动态提取逐年模拟，含冻涨、CPR、PR 规则。">
+<meta name="twitter:description" content="Guyton-Klinger 动态提取逐年模拟，含通胀冻结、保本调降、繁荣调升规则。">
 <meta name="twitter:image" content="https://chihengfinance.com/assets/og.png">
 <script type="application/ld+json">
 {
@@ -28,7 +28,7 @@
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Web",
   "inLanguage": "zh-Hans",
-  "description": "用 Guyton-Klinger 法则逐年模拟退休动态提取，含冻涨、资本保全与繁荣规则。",
+  "description": "用 Guyton-Klinger 法则逐年模拟退休动态提取，含通胀冻结、保本调降与繁荣调升规则。",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" }
 }
 </script>
@@ -58,7 +58,7 @@
 <main>
   <section>
     <div class="tool-head">
-      <div class="eyebrow">Guyton-Klinger Rules</div>
+      <div class="eyebrow">GK 动态提取法则（Guyton-Klinger Rules）</div>
       <h1 style="font-size:clamp(1.75rem,1.2rem + 2.8vw,2.625rem)">GK <em>动态提取</em> 模拟器</h1>
     </div>
 
@@ -75,12 +75,12 @@
       <details>
         <summary>高级规则参数</summary>
         <div class="row2">
-          <div class="field"><label for="g_cprT">CPR 触发倍率 ×</label><input id="g_cprT" class="num" inputmode="decimal" autocomplete="off" value="1.2"></div>
-          <div class="field"><label for="g_cprC">CPR 削减 %</label><input id="g_cprC" class="num" inputmode="decimal" autocomplete="off" value="10"></div>
+          <div class="field"><label for="g_cprT">保本调降触发倍率 ×</label><input id="g_cprT" class="num" inputmode="decimal" autocomplete="off" value="1.2"></div>
+          <div class="field"><label for="g_cprC">保本调降削减 %</label><input id="g_cprC" class="num" inputmode="decimal" autocomplete="off" value="10"></div>
         </div>
         <div class="row2">
-          <div class="field"><label for="g_prT">PR 触发倍率 ×</label><input id="g_prT" class="num" inputmode="decimal" autocomplete="off" value="0.8"></div>
-          <div class="field"><label for="g_prR">PR 增加 %</label><input id="g_prR" class="num" inputmode="decimal" autocomplete="off" value="10"></div>
+          <div class="field"><label for="g_prT">繁荣调升触发倍率 ×</label><input id="g_prT" class="num" inputmode="decimal" autocomplete="off" value="0.8"></div>
+          <div class="field"><label for="g_prR">繁荣调升增加 %</label><input id="g_prR" class="num" inputmode="decimal" autocomplete="off" value="10"></div>
         </div>
       </details>
     </div>
@@ -117,6 +117,7 @@
         <tbody id="g_body"><tr><td colspan="8"><div class="placeholder">选情景或自定义收益后，按「执行模拟」看逐年结果。</div></td></tr></tbody>
       </table>
     </div>
+    <div class="trig-legend"><p>「触发」栏的标签：</p><ul><li><span class="trig t-fz">通胀冻结</span>（Inflation rule / freeze）前一年下跌、提取率又偏高，今年不加通胀。</li><li><span class="trig t-cpr">保本调降</span>（Capital Preservation）提取率太高，减少提取。</li><li><span class="trig t-pr">繁荣调升</span>（Prosperity）提取率太低，增加提取。</li></ul></div>
     <div class="disclaimer">本工具为教学与情景探索用途，并非投资建议。GK 法则由 Jonathan Guyton 与 William Klinger 提出。</div>
   </section>
 
@@ -126,9 +127,9 @@
       <p>Guyton-Klinger（GK）是一套「动态提取」策略：不像固定 4% 法则每年机械式调整通胀，而是依市场表现动态增减提取金额，目标是让退休金在熊市时撑得更久、牛市时适度多取。每年的提取金额会依下列顺序计算：</p>
       <ul>
         <li><b>通胀调整草案</b>：上一年提取金额 ×（1＋通胀率）；第 1 年为本金 × 初始提取率。</li>
-        <li><b>冻涨规则</b>：若前一年市场为负、且草案提取率高于初始率，则跳过通胀调整，沿用去年金额。</li>
-        <li><b>资本保全 CPR</b>：当提取率超过「初始率 × 触发倍率」，砍掉一定比例，保护本金。</li>
-        <li><b>繁荣规则 PR</b>：当提取率低于「初始率 × 触发倍率」，适度提高提取，让你享受增长。</li>
+        <li><b>通胀冻结（Inflation rule / freeze）</b>：若前一年市场为负、且草案提取率高于初始率，则跳过通胀调整，沿用去年金额。</li>
+        <li><b>保本调降（Capital Preservation）</b>：当提取率超过「初始率 × 触发倍率」，砍掉一定比例，保护本金。</li>
+        <li><b>繁荣调升（Prosperity）</b>：当提取率低于「初始率 × 触发倍率」，适度提高提取，让你享受增长。</li>
       </ul>
       <h2>常见问题</h2>
       <p><b>Q：这能保证我的钱不会花完吗？</b><br>不能。本工具仅以你输入的情景试算，市场实际收益无法预测。请把它当成「不同情景下会发生什么」的探索工具。</p>
