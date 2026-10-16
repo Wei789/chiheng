@@ -152,3 +152,8 @@ footer .fl a:hover{color:var(--pine)}
 .saved-name{flex:1;font-size:14px;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .btn-del{background:none;border:1px solid var(--line);color:var(--ink-soft);border-radius:7px;padding:7px 12px;font-family:var(--sans);font-size:13px;cursor:pointer;transition:.18s}
 .btn-del:hover{border-color:var(--sell);color:var(--sell)}
+/* 廣告版位：預設 hidden，不預留高度（避免 CLS）；未填滿時整塊收起 */
+.ad-slot{margin:22px 0}
+.ad-slot[hidden]{display:none!important}
+ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important}
+.ad-slot:has(ins[data-ad-status="unfilled"]){display:none}

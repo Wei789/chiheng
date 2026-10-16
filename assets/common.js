@@ -115,3 +115,38 @@ function buildStorageUI(kind, gather, apply){
   };
   render();
 }
+
+/* ===== 廣告版位 =====
+   總開關：ADS_ENABLED=false 時，所有 .ad-slot 維持 hidden（不顯示、不佔空間、不呼叫 adsbygoogle.push）。
+   過審後：在 AdSense 建立廣告單元 → 把 ID 填進 AD_SLOTS → 改成 true。詳見 docs/ADSENSE_SETUP.md。
+   各版位以 <div class="ad-slot" data-ad-key="..."> 的 data-ad-key 對應下方設定；ID 空白的版位不會啟用。 */
+const ADS_ENABLED = false;
+const AD_SLOTS = {
+  tool:       '',   // 工具頁：計算結果下方
+  articleMid: '',   // 文章：內文中段
+  articleEnd: ''    // 文章：內文結尾
+};
+
+(function initAdSlots(){
+  if (!ADS_ENABLED) return;
+  document.querySelectorAll('.ad-slot').forEach(slot => {
+    const id = AD_SLOTS[slot.dataset.adKey];
+    const ins = slot.querySelector('ins.adsbygoogle');
+    if (!id || !ins || ins.dataset.adsbygoogleStatus) return;
+    ins.dataset.adSlot = id;
+    slot.hidden = false;
+    try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch(e){}
+  });
+})();
+
+/* ===== Cookie 設定（Google 隱私權與訊息 CMP）=====
+   CMP 由 AdSense 載入碼自動帶入；只有在 CMP 已載入（例如 EEA/英國/瑞士訪客）時才能重新開啟同意訊息。 */
+document.querySelectorAll('.cookie-settings').forEach(a => a.addEventListener('click', e => {
+  e.preventDefault();
+  const fc = window.googlefc;
+  if (fc && fc.callbackQueue && typeof fc.callbackQueue.push === 'function') {
+    fc.callbackQueue.push(() => window.googlefc.showRevocationMessage());
+  } else {
+    alert('目前無法開啟 Cookie 設定：你所在的地區可能不需顯示同意訊息，或廣告／同意管理服務被瀏覽器擋下。可在瀏覽器設定中清除本站 Cookie。');
+  }
+}));
