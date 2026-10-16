@@ -157,3 +157,15 @@ footer .fl a:hover{color:var(--pine)}
 .ad-slot[hidden]{display:none!important}
 ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important}
 .ad-slot:has(ins[data-ad-status="unfilled"]){display:none}
+/* 長文：小標、編號清單、算式區塊、表格 */
+.prose h3{font-family:var(--serif);font-size:18.5px;color:var(--ink);margin:22px 0 8px;font-weight:600}
+.prose ol{margin:0 0 14px 22px;color:var(--ink-soft)}
+.prose a{color:var(--pine);text-decoration:underline}
+.prose .tblwrap{margin:6px 0 18px}
+.calc{font-family:var(--mono);font-size:13px;line-height:1.75;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 16px;margin:0 0 16px;color:var(--ink);overflow-x:auto;white-space:pre-wrap}
+.faq h3{font-size:16.5px}
+.article-meta{font-size:12.5px;color:var(--ink-soft);margin-top:14px}
+.article-list{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px}
+.article-list .tool-card h3{font-size:20px}
+.related{margin-top:30px;padding-top:18px;border-top:1px solid var(--line)}
+@media(max-width:760px){ .article-list{grid-template-columns:1fr} }
